@@ -138,14 +138,36 @@ const Technologies = () => {
 
   // Handle arrow click to scroll to next section
   const scrollToNext = () => {
-    const projects = document.getElementById('projects')
-    if (projects) {
-      projects.scrollIntoView({ behavior: 'smooth' })
+    const contact = document.getElementById('contact')
+    if (contact) {
+      // Create a flashy arrow animation before scrolling
+      gsap
+        .timeline()
+        .to(arrowRef.current, {
+          y: -10,
+          scale: 1.2,
+          opacity: 0.8,
+          duration: 0.2,
+          ease: 'power2.in',
+        })
+        .to(arrowRef.current, {
+          y: 30,
+          scale: 0.5,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+          onComplete: () => {
+            contact.scrollIntoView({ behavior: 'smooth' })
+          },
+        })
     }
   }
 
   return (
     <section id='skills' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-24 bg-dark relative'>
+      {/* Page transition overlay */}
+      <div className='page-transition-overlay fixed inset-0 bg-gradient-to-b from-neon-purple/30 to-darker pointer-events-none z-50 opacity-0 transform translate-y-full'></div>
+
       <div className='container mx-auto px-4 md:px-12 max-w-5xl'>
         <div className='flex flex-col gap-12'>
           {/* Section header with number */}
@@ -169,11 +191,28 @@ const Technologies = () => {
                   {techGroup.items.map((tech, techIndex) => {
                     const globalIndex = groupIndex * 10 + techIndex
                     return (
-                      <div key={techIndex} className='tech-card relative bg-darker p-4 rounded-md border border-neon-purple/20 flex items-center justify-center transition-all duration-300 hover:border-neon-purple group' data-index={globalIndex}>
+                      <div
+                        key={techIndex}
+                        className='tech-card relative bg-darker p-4 rounded-md border border-neon-purple/20 flex items-center justify-center 
+                        transition-all duration-500 ease-in-out
+                        hover:border-neon-purple group 
+                        hover:shadow-[0_0_20px_rgba(176,38,255,0.25)] 
+                        hover:scale-[1.02] hover:translate-y-[-2px]'
+                        data-index={globalIndex}>
                         {/* Glowing border effect on hover */}
-                        <div className='absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 bg-gradient-to-r from-neon-pink/10 to-neon-purple/10 transition-opacity duration-300'></div>
+                        <div className='absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 bg-gradient-to-r from-neon-pink/10 to-neon-purple/10 transition-opacity duration-500 ease-in-out'></div>
 
-                        <p className='text-lg text-center text-white group-hover:text-neon-purple transition-colors duration-300'>{tech}</p>
+                        <p className='text-lg text-center text-white transition-all duration-500 ease-in-out'>
+                          <span
+                            className='relative px-2 py-1 inline-block 
+                          transition-all duration-300 ease-in-out 
+                          hover:text-neon-purple group-hover:text-neon-purple/90 
+                          hover:shadow-[0_0_0_1px_rgba(176,38,255,0.2)] 
+                          hover:bg-neon-purple/5
+                          hover:rounded-md'>
+                            {tech}
+                          </span>
+                        </p>
                       </div>
                     )
                   })}

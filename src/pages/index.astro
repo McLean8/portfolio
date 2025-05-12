@@ -1,16 +1,18 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Technologies from '../components/Technologies';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 import Preloader from '../components/Preloader';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<MainLayout title="Ethan McLean | Software Developer">
+<Layout title="Ethan McLean | Software Developer">
 	<div id="preloader-container">
 		<Preloader client:only="react" finishLoading={() => {
 			document.getElementById('content')?.classList.remove('opacity-0');
@@ -24,8 +26,10 @@ import Preloader from '../components/Preloader';
 		<Hero client:load />
 		<About client:load />
 		<Technologies client:load />
+		<Contact client:load />
+		<Footer client:load />
 	</div>
-</MainLayout>
+</Layout>
 
 <style>
 	/* Custom cursor styles */

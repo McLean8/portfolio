@@ -241,43 +241,43 @@ const About = () => {
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>5</span>
                         <span className='text-white pl-8'>{`<`}</span>
-                        <span className='text-neon-pink'>div</span>
+                        <span className='text-red-500'>div</span>
                         <span className='text-white'>{`>`}</span>
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>6</span>
                         <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-neon-pink'>h1</span>
+                        <span className='text-red-500'>h1</span>
                         <span className='text-white'>{`>`}</span>
                         <span className='text-neon-purple'>Clean&nbsp;Code</span>
                         <span className='text-white'>{`</`}</span>
-                        <span className='text-neon-pink'>h1</span>
+                        <span className='text-red-500'>h1</span>
                         <span className='text-white'>{`>`}</span>
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>7</span>
                         <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-neon-pink'>p</span>
+                        <span className='text-red-500'>p</span>
                         <span className='text-white'>{`>`}</span>
                         <span className='text-gray-300'>Beautiful&nbsp;Interfaces</span>
                         <span className='text-white'>{`</`}</span>
-                        <span className='text-neon-pink'>p</span>
+                        <span className='text-red-500'>p</span>
                         <span className='text-white'>{`>`}</span>
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>8</span>
                         <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-neon-pink'>p</span>
+                        <span className='text-red-500'>p</span>
                         <span className='text-white'>{`>`}</span>
                         <span className='text-gray-300'>Responsive&nbsp;Design</span>
                         <span className='text-white'>{`</`}</span>
-                        <span className='text-neon-pink'>p</span>
+                        <span className='text-red-500'>p</span>
                         <span className='text-white'>{`>`}</span>
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>9</span>
                         <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-neon-pink'>button</span>
+                        <span className='text-red-500'>button</span>
                         <span className='text-amber-300'>&nbsp;className</span>
                         <span className='text-white'>=</span>
                         <span className='text-green-300'>"neon-glow"</span>
@@ -290,13 +290,13 @@ const About = () => {
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>11</span>
                         <span className='text-white pl-12'>{`</`}</span>
-                        <span className='text-neon-pink'>button</span>
+                        <span className='text-red-500'>button</span>
                         <span className='text-white'>{`>`}</span>
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>12</span>
                         <span className='text-white pl-8'>{`</`}</span>
-                        <span className='text-neon-pink'>div</span>
+                        <span className='text-red-500'>div</span>
                         <span className='text-white'>{`>`}</span>
                       </div>
                       <div className='flex'>
