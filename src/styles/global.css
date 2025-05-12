@@ -245,6 +245,16 @@ button:active,
   text-shadow: 0 0 8px var(--neon-purple-glow);
 }
 
+/* Shadow glow effect for buttons */
+.shadow-glow {
+  box-shadow: 0 0 8px var(--neon-purple-subtle), 0 0 12px rgba(176, 38, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.shadow-glow:hover {
+  box-shadow: 0 0 15px var(--neon-purple-glow), 0 0 25px rgba(176, 38, 255, 0.15);
+}
+
 /* Contact form particles animation */
 @keyframes floatParticle1 {
   0% {
@@ -365,9 +375,20 @@ button[type='submit'] {
   background-color: var(--neon-purple);
   color: white !important;
   font-weight: 500 !important;
-  border: 1px solid var(--neon-purple) !important;
-  border-radius: 0 !important;
+  border: 2px solid var(--neon-purple) !important;
+  border-radius: 9999px !important; /* Full rounded style */
   transition: all 0.3s ease !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.5 !important;
+  min-width: 240px !important;
+  display: inline-block !important;
+  margin: 1rem !important;
+}
+
+button[type='submit']:hover {
+  background-color: #c24aff !important; /* Slightly lighter purple */
+  box-shadow: 0 0 15px var(--neon-purple-glow), 0 0 25px rgba(176, 38, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
 }
 
 /* Contact form specific styling */
