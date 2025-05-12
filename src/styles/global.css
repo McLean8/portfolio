@@ -1,0 +1,246 @@
+@import 'tailwindcss';
+@import 'tailwindcss/preflight';
+
+:root {
+  --neon-purple: #b026ff;
+  --neon-purple-subtle: rgba(176, 38, 255, 0.3);
+  --neon-purple-glow: rgba(176, 38, 255, 0.7);
+  --neon-pink: #ff26b0;
+  --dark: #0a0a0a;
+  --darker: #050505;
+  --light: #e2e2e2;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--dark);
+  color: var(--light);
+  overflow-x: hidden;
+  text-shadow: 0 0 2px var(--neon-purple-subtle); /* Global subtle glow for all text */
+}
+
+/* Letter hover effect */
+.letter-hover {
+  display: inline-block;
+}
+
+.letter-hover span {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+  transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+  margin: 0 -0.5px; /* Adjust letter spacing slightly */
+}
+
+.letter-hover span:hover {
+  color: var(--neon-purple);
+  text-shadow: 0 0 8px var(--neon-purple-glow), 0 0 12px var(--neon-purple-subtle);
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Scroll bar styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-purple);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-pink);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--darker);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--neon-purple);
+  color: var(--dark);
+}
+
+/* Custom animations */
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+  }
+  50% {
+    text-shadow: 0 0 15px var(--neon-purple), 0 0 30px var(--neon-purple);
+  }
+}
+
+@keyframes letterPulse {
+  0% {
+    text-shadow: 0 0 8px var(--neon-purple-glow), 0 0 12px var(--neon-purple-subtle);
+  }
+  50% {
+    text-shadow: 0 0 12px var(--neon-purple-glow), 0 0 18px var(--neon-purple-subtle);
+  }
+  100% {
+    text-shadow: 0 0 8px var(--neon-purple-glow), 0 0 12px var(--neon-purple-subtle);
+  }
+}
+
+@keyframes letterPulseBright {
+  0% {
+    text-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-purple);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--neon-purple), 0 0 30px var(--neon-purple), 0 0 40px var(--neon-purple-subtle);
+  }
+  100% {
+    text-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-purple);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Glow Text Animation */
+.glow-text {
+  display: inline-block;
+}
+
+.glow-char {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+  transition: all 0.3s ease;
+  margin: 0 -0.5px;
+  text-shadow: 0 0 2px var(--neon-purple-subtle); /* Default glow for all characters */
+}
+
+/* Intensity variations */
+.glow-light .glow-char {
+  text-shadow: 0 0 3px var(--neon-purple-subtle);
+}
+
+.glow-light .glow-char:hover {
+  color: var(--neon-purple);
+  text-shadow: 0 0 5px var(--neon-purple-subtle), 0 0 8px var(--neon-purple-subtle);
+  transform: translateY(-1px);
+}
+
+.glow-medium .glow-char {
+  text-shadow: 0 0 5px var(--neon-purple-subtle);
+}
+
+.glow-medium .glow-char:hover {
+  color: var(--neon-purple);
+  text-shadow: 0 0 10px var(--neon-purple-glow), 0 0 15px var(--neon-purple-subtle);
+  transform: translateY(-1px) scale(1.05);
+  animation: letterPulse 1.5s ease-in-out infinite;
+}
+
+.glow-strong .glow-char {
+  text-shadow: 0 0 8px var(--neon-purple-subtle), 0 0 12px var(--neon-purple-subtle);
+  color: var(--neon-purple);
+}
+
+.glow-strong .glow-char:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-purple), 0 0 30px var(--neon-purple-subtle);
+  transform: translateY(-2px) scale(1.1);
+  animation: letterPulseBright 1.2s ease-in-out infinite;
+}
+
+/* White glow variation */
+.glow-white .glow-char {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.glow-white .glow-char:hover {
+  color: var(--neon-purple);
+  text-shadow: 0 0 10px var(--neon-purple-glow), 0 0 15px var(--neon-purple-subtle), 0 0 20px var(--neon-purple-subtle);
+  transform: translateY(-1px) scale(1.05);
+  animation: whiteToPurplePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes whiteToPurplePulse {
+  0% {
+    text-shadow: 0 0 5px var(--neon-purple-glow), 0 0 8px var(--neon-purple-subtle);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--neon-purple), 0 0 15px var(--neon-purple-glow), 0 0 20px var(--neon-purple-subtle);
+  }
+  100% {
+    text-shadow: 0 0 5px var(--neon-purple-glow), 0 0 8px var(--neon-purple-subtle);
+  }
+}
+
+/* Utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Custom focus styles */
+*:focus {
+  outline: none;
+}
+
+/* Accessibility focus-visible styles that don't show the square outline on click */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--neon-purple-subtle);
+  opacity: 0.95;
+}
+
+/* Adding subtle click effect */
+a,
+button,
+[role='button'],
+.clickable {
+  position: relative;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+a:active,
+button:active,
+[role='button']:active,
+.clickable:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* Navbar link specific effects */
+.nav-link:active {
+  transform: scale(0.96);
+  opacity: 0.85;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.nav-link:active span {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.mobile-nav-link:active {
+  background-color: rgba(176, 38, 255, 0.1);
+  transform: scale(0.98);
+}
+
+/* Text gradient effects */
+.text-gradient {
+  background: linear-gradient(to right, var(--neon-purple), var(--neon-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none; /* Prevent shadow on gradient text */
+}
+
+.neon-text {
+  color: var(--neon-purple);
+  text-shadow: 0 0 8px var(--neon-purple-glow);
+}

@@ -1,11 +1,57 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import Technologies from '../components/Technologies';
+import Preloader from '../components/Preloader';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Ethan McLean | Software Developer">
+	<div id="preloader-container">
+		<Preloader client:only="react" finishLoading={() => {
+			document.getElementById('content')?.classList.remove('opacity-0');
+			document.getElementById('preloader-container')?.classList.add('hidden');
+		}} />
+	</div>
+	
+	<!-- Main content becomes visible after preloader completes -->
+	<div id="content" class="opacity-0 transition-opacity duration-500">
+		<Navbar client:load />
+		<Hero client:load />
+		<About client:load />
+		<Technologies client:load />
+	</div>
+</MainLayout>
+
+<style>
+	/* Custom cursor styles */
+	html {
+		cursor: url('/cursor.svg'), auto;
+	}
+	
+	a, button, [role="button"] {
+		cursor: url('/cursor-pointer.svg'), pointer;
+	}
+</style>
+
+<script>
+	// Fallback to ensure content becomes visible even if preloader fails
+	window.addEventListener('DOMContentLoaded', () => {
+		setTimeout(() => {
+			const content = document.getElementById('content');
+			const preloader = document.getElementById('preloader-container');
+			
+			if (content && content.classList.contains('opacity-0')) {
+				content.classList.remove('opacity-0');
+			}
+			
+			if (preloader && !preloader.classList.contains('hidden')) {
+				preloader.classList.add('hidden');
+			}
+		}, 5000); // 5 second failsafe
+	});
+</script>
