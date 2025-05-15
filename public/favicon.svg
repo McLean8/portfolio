@@ -1,5 +1,5 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
-  <path d="M17 20H31V24H21V30H29V34H21V44H17V20Z" fill="#b026ff"/>
-  <path d="M33 20H47V24H37V30H45V34H37V40H47V44H33V20Z" fill="#ff26b0"/>
+  <text x="14" y="42" font-family="Arial" font-weight="bold" font-size="28" fill="#b026ff">E</text>
+  <text x="32" y="42" font-family="Arial" font-weight="bold" font-size="28" fill="#ff26b0">M</text>
 </svg>
