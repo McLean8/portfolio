@@ -21,6 +21,15 @@ const Navbar = () => {
   ]
 
   useEffect(() => {
+    // Initialize theme from localStorage or default to dark mode
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'light') {
+      setDarkMode(false)
+    } else {
+      // Default to dark mode if no preference is saved
+      setDarkMode(true)
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
@@ -61,6 +70,9 @@ const Navbar = () => {
   useEffect(() => {
     // Apply theme changes when darkMode state changes
     document.documentElement.classList.toggle('light-mode', !darkMode)
+
+    // Save theme preference to localStorage
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light')
   }, [darkMode])
 
   const toggleMenu = () => {
@@ -127,7 +139,7 @@ const Navbar = () => {
               ))}
 
               {/* Theme Toggle Button */}
-              <button onClick={toggleTheme} className='ml-6 w-12 h-12 rounded-full bg-darker/40 border border-neon-purple/20 backdrop-blur-md flex items-center justify-center hover:bg-darker/60 transition-all duration-500 hover:scale-110 outline-none' aria-label='Toggle theme'>
+              <button onClick={toggleTheme} className='ml-6 w-12 h-12 rounded-full bg-darker/40 border border-neon-purple/20 backdrop-blur-md flex items-center justify-center hover:bg-darker/60 transition-all duration-500 hover:scale-110 outline-none group relative' aria-label='Toggle theme'>
                 <div className='relative w-full h-full flex items-center justify-center overflow-hidden'>
                   <div className={`absolute transition-all duration-500 transform ${darkMode ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'}`}>
                     <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6 text-yellow-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -140,13 +152,15 @@ const Navbar = () => {
                     </svg>
                   </div>
                 </div>
+                <span className='sr-only'>{darkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+                <span className='absolute top-14 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-light/70 whitespace-nowrap'>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
               </button>
             </div>
 
             {/* Mobile Navigation Button */}
             <div className='md:hidden flex items-center'>
               {/* Mobile Theme Toggle */}
-              <button onClick={toggleTheme} className='mr-4 w-10 h-10 rounded-md bg-darker/40 border border-neon-purple/20 backdrop-blur-md flex items-center justify-center hover:bg-darker/60 transition-all duration-500 hover:scale-110 focus:outline-none' aria-label='Toggle theme'>
+              <button onClick={toggleTheme} className='mr-4 w-10 h-10 rounded-md bg-darker/40 border border-neon-purple/20 backdrop-blur-md flex items-center justify-center hover:bg-darker/60 transition-all duration-500 hover:scale-110 focus:outline-none group relative' aria-label='Toggle theme'>
                 <div className='relative w-full h-full flex items-center justify-center overflow-hidden'>
                   <div className={`absolute transition-all duration-500 transform ${darkMode ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'}`}>
                     <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5 text-yellow-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -159,6 +173,8 @@ const Navbar = () => {
                     </svg>
                   </div>
                 </div>
+                <span className='sr-only'>{darkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+                <span className='absolute right-0 top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-light/70 whitespace-nowrap bg-darker/80 px-2 py-1 rounded'>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
               </button>
 
               {/* Menu Toggle Button */}

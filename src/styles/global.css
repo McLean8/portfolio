@@ -12,6 +12,18 @@
   --light: #e2e2e2;
 }
 
+/* Light mode variables */
+html.light-mode {
+  --neon-purple: #800dbf; /* Slightly darker purple for better contrast */
+  --neon-purple-subtle: rgba(128, 13, 191, 0.3);
+  --neon-purple-glow: rgba(128, 13, 191, 0.7);
+  --neon-pink: #d7008c; /* Slightly darker pink for better contrast */
+  --neon-pink-glow: rgba(215, 0, 140, 0.7);
+  --dark: #f8f8f8; /* Light background */
+  --darker: #ffffff; /* Lighter background */
+  --light: #1a1a1a; /* Dark text for light background */
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
@@ -25,6 +37,11 @@ body {
   text-shadow: 0 0 2px var(--neon-purple-subtle); /* Global subtle glow for all text */
 }
 
+/* Light mode overrides */
+html.light-mode body {
+  text-shadow: 0 0 1px var(--neon-purple-subtle); /* Reduced text shadow for light mode */
+}
+
 /* Letter hover effect */
 .letter-hover {
   display: inline-block;
@@ -34,13 +51,18 @@ body {
   display: inline-block;
   position: relative;
   cursor: default;
-  transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease,
+    transform 0.2s ease;
   margin: 0 -0.5px; /* Adjust letter spacing slightly */
 }
 
 .letter-hover span:hover {
   color: var(--neon-purple);
-  text-shadow: 0 0 8px var(--neon-purple-glow), 0 0 12px var(--neon-purple-subtle);
+  text-shadow:
+    0 0 8px var(--neon-purple-glow),
+    0 0 12px var(--neon-purple-subtle);
   transform: translateY(-1px) scale(1.05);
 }
 
@@ -72,34 +94,51 @@ body {
 @keyframes glow {
   0%,
   100% {
-    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+    text-shadow:
+      0 0 10px var(--neon-purple),
+      0 0 20px var(--neon-purple);
   }
   50% {
-    text-shadow: 0 0 15px var(--neon-purple), 0 0 30px var(--neon-purple);
+    text-shadow:
+      0 0 15px var(--neon-purple),
+      0 0 30px var(--neon-purple);
   }
 }
 
 @keyframes letterPulse {
   0% {
-    text-shadow: 0 0 8px var(--neon-purple-glow), 0 0 12px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 8px var(--neon-purple-glow),
+      0 0 12px var(--neon-purple-subtle);
   }
   50% {
-    text-shadow: 0 0 12px var(--neon-purple-glow), 0 0 18px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 12px var(--neon-purple-glow),
+      0 0 18px var(--neon-purple-subtle);
   }
   100% {
-    text-shadow: 0 0 8px var(--neon-purple-glow), 0 0 12px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 8px var(--neon-purple-glow),
+      0 0 12px var(--neon-purple-subtle);
   }
 }
 
 @keyframes letterPulseBright {
   0% {
-    text-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-purple);
+    text-shadow:
+      0 0 15px var(--neon-purple),
+      0 0 25px var(--neon-purple);
   }
   50% {
-    text-shadow: 0 0 20px var(--neon-purple), 0 0 30px var(--neon-purple), 0 0 40px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 20px var(--neon-purple),
+      0 0 30px var(--neon-purple),
+      0 0 40px var(--neon-purple-subtle);
   }
   100% {
-    text-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-purple);
+    text-shadow:
+      0 0 15px var(--neon-purple),
+      0 0 25px var(--neon-purple);
   }
 }
 
@@ -121,6 +160,11 @@ body {
   text-shadow: 0 0 2px var(--neon-purple-subtle); /* Default glow for all characters */
 }
 
+/* Light mode adjustments for glow text */
+html.light-mode .glow-char {
+  text-shadow: 0 0 1px var(--neon-purple-subtle);
+}
+
 /* Intensity variations */
 .glow-light .glow-char {
   text-shadow: 0 0 3px var(--neon-purple-subtle);
@@ -128,7 +172,9 @@ body {
 
 .glow-light .glow-char:hover {
   color: var(--neon-purple);
-  text-shadow: 0 0 5px var(--neon-purple-subtle), 0 0 8px var(--neon-purple-subtle);
+  text-shadow:
+    0 0 5px var(--neon-purple-subtle),
+    0 0 8px var(--neon-purple-subtle);
   transform: translateY(-1px);
 }
 
@@ -138,19 +184,26 @@ body {
 
 .glow-medium .glow-char:hover {
   color: var(--neon-purple);
-  text-shadow: 0 0 10px var(--neon-purple-glow), 0 0 15px var(--neon-purple-subtle);
+  text-shadow:
+    0 0 10px var(--neon-purple-glow),
+    0 0 15px var(--neon-purple-subtle);
   transform: translateY(-1px) scale(1.05);
   animation: letterPulse 1.5s ease-in-out infinite;
 }
 
 .glow-strong .glow-char {
-  text-shadow: 0 0 8px var(--neon-purple-subtle), 0 0 12px var(--neon-purple-subtle);
+  text-shadow:
+    0 0 8px var(--neon-purple-subtle),
+    0 0 12px var(--neon-purple-subtle);
   color: var(--neon-purple);
 }
 
 .glow-strong .glow-char:hover {
   color: #ffffff;
-  text-shadow: 0 0 15px var(--neon-purple), 0 0 25px var(--neon-purple), 0 0 30px var(--neon-purple-subtle);
+  text-shadow:
+    0 0 15px var(--neon-purple),
+    0 0 25px var(--neon-purple),
+    0 0 30px var(--neon-purple-subtle);
   transform: translateY(-2px) scale(1.1);
   animation: letterPulseBright 1.2s ease-in-out infinite;
 }
@@ -158,25 +211,45 @@ body {
 /* White glow variation */
 .glow-white .glow-char {
   color: #ffffff;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 8px rgba(255, 255, 255, 0.4);
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.6),
+    0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Light mode adjustment for white glow */
+html.light-mode .glow-white .glow-char {
+  color: #1a1a1a;
+  text-shadow:
+    0 0 3px rgba(128, 13, 191, 0.4),
+    0 0 5px rgba(128, 13, 191, 0.3);
 }
 
 .glow-white .glow-char:hover {
   color: var(--neon-purple);
-  text-shadow: 0 0 10px var(--neon-purple-glow), 0 0 15px var(--neon-purple-subtle), 0 0 20px var(--neon-purple-subtle);
+  text-shadow:
+    0 0 10px var(--neon-purple-glow),
+    0 0 15px var(--neon-purple-subtle),
+    0 0 20px var(--neon-purple-subtle);
   transform: translateY(-1px) scale(1.05);
   animation: whiteToPurplePulse 1.5s ease-in-out infinite;
 }
 
 @keyframes whiteToPurplePulse {
   0% {
-    text-shadow: 0 0 5px var(--neon-purple-glow), 0 0 8px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 5px var(--neon-purple-glow),
+      0 0 8px var(--neon-purple-subtle);
   }
   50% {
-    text-shadow: 0 0 10px var(--neon-purple), 0 0 15px var(--neon-purple-glow), 0 0 20px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 10px var(--neon-purple),
+      0 0 15px var(--neon-purple-glow),
+      0 0 20px var(--neon-purple-subtle);
   }
   100% {
-    text-shadow: 0 0 5px var(--neon-purple-glow), 0 0 8px var(--neon-purple-subtle);
+    text-shadow:
+      0 0 5px var(--neon-purple-glow),
+      0 0 8px var(--neon-purple-subtle);
   }
 }
 
@@ -205,7 +278,9 @@ button,
 [role='button'],
 .clickable {
   position: relative;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 a:active,
@@ -220,7 +295,9 @@ button:active,
 .nav-link:active {
   transform: scale(0.96);
   opacity: 0.85;
-  transition: transform 0.1s ease, opacity 0.1s ease;
+  transition:
+    transform 0.1s ease,
+    opacity 0.1s ease;
 }
 
 .nav-link:active span {
@@ -230,6 +307,44 @@ button:active,
 .mobile-nav-link:active {
   background-color: rgba(176, 38, 255, 0.1);
   transform: scale(0.98);
+}
+
+/* Light mode adjustments for mobile nav */
+html.light-mode .mobile-nav-link:active {
+  background-color: rgba(128, 13, 191, 0.1);
+}
+
+/* Light mode bg classes for Tailwind components */
+html.light-mode .bg-dark {
+  background-color: var(--dark);
+}
+
+html.light-mode .bg-darker {
+  background-color: var(--darker);
+}
+
+html.light-mode .bg-darker\/85 {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+html.light-mode .bg-darker\/90 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+html.light-mode .bg-darker\/40 {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+html.light-mode .shadow-\[0_4px_30px_rgba\(176\,38\,255\,0\.2\)\] {
+  box-shadow: 0 4px 30px rgba(128, 13, 191, 0.15);
+}
+
+html.light-mode .shadow-\[0_10px_30px_rgba\(0\,0\,0\,0\.5\)\] {
+  box-shadow: 0 10px 30px rgba(128, 13, 191, 0.2);
+}
+
+html.light-mode .border-neon-purple\/20 {
+  border-color: rgba(128, 13, 191, 0.2);
 }
 
 /* Text gradient effects */
@@ -248,12 +363,39 @@ button:active,
 
 /* Shadow glow effect for buttons */
 .shadow-glow {
-  box-shadow: 0 0 8px var(--neon-purple-subtle), 0 0 12px rgba(176, 38, 255, 0.1);
+  box-shadow:
+    0 0 8px var(--neon-purple-subtle),
+    0 0 12px rgba(176, 38, 255, 0.1);
   transition: all 0.3s ease;
 }
 
 .shadow-glow:hover {
-  box-shadow: 0 0 15px var(--neon-purple-glow), 0 0 25px rgba(176, 38, 255, 0.15);
+  box-shadow:
+    0 0 15px var(--neon-purple-glow),
+    0 0 25px rgba(176, 38, 255, 0.15);
+}
+
+/* Light mode input and textarea styles */
+html.light-mode input::placeholder,
+html.light-mode textarea::placeholder {
+  color: rgba(26, 26, 26, 0.5) !important;
+}
+
+html.light-mode input[type],
+html.light-mode input[type='text'],
+html.light-mode input[type='email'],
+html.light-mode textarea,
+html.light-mode select {
+  color: var(--light) !important;
+  border-bottom: 1px solid var(--neon-purple) !important;
+}
+
+html.light-mode input[type]:focus,
+html.light-mode input[type='text']:focus,
+html.light-mode input[type='email']:focus,
+html.light-mode textarea:focus,
+html.light-mode select:focus {
+  border-bottom: 2px solid var(--neon-pink) !important;
 }
 
 /* Contact form particles animation */
@@ -388,8 +530,22 @@ button[type='submit'] {
 
 button[type='submit']:hover {
   background-color: #c24aff !important; /* Slightly lighter purple */
-  box-shadow: 0 0 15px var(--neon-purple-glow), 0 0 25px rgba(176, 38, 255, 0.2) !important;
+  box-shadow:
+    0 0 15px var(--neon-purple-glow),
+    0 0 25px rgba(176, 38, 255, 0.2) !important;
   transform: translateY(-2px) !important;
+}
+
+/* Light mode button adjustments */
+html.light-mode button[type='submit'] {
+  color: white !important;
+}
+
+html.light-mode button[type='submit']:hover {
+  background-color: #9020df !important; /* Slightly lighter purple for light mode */
+  box-shadow:
+    0 0 15px var(--neon-purple-glow),
+    0 0 25px rgba(128, 13, 191, 0.3) !important;
 }
 
 /* Contact form specific styling */
@@ -397,4 +553,104 @@ button[type='submit']:hover {
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* Light mode adjustments for Tailwind text colors */
+html.light-mode .text-light {
+  color: var(--light);
+}
+
+html.light-mode .text-light\/90 {
+  color: rgba(26, 26, 26, 0.9);
+}
+
+html.light-mode .text-light\/80 {
+  color: rgba(26, 26, 26, 0.8);
+}
+
+html.light-mode .text-light\/70 {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+html.light-mode .text-light\/60 {
+  color: rgba(26, 26, 26, 0.6);
+}
+
+html.light-mode .text-white {
+  color: var(--light);
+}
+
+html.light-mode .hover\:text-white:hover {
+  color: var(--light);
+}
+
+html.light-mode .bg-light {
+  background-color: var(--light);
+}
+
+/* Light mode hover effect adjustments */
+html.light-mode .hover\:bg-darker\/60:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Light mode hamburger menu */
+html.light-mode .bg-light {
+  background-color: var(--light);
+}
+
+/* Fix form submit buttons in light mode */
+html.light-mode button[type='submit'] {
+  background-color: var(--neon-purple);
+  color: white !important;
+}
+
+/* Fix mobile navigation menu in light mode */
+html.light-mode .mobile-nav-link:hover {
+  background-color: rgba(128, 13, 191, 0.05);
+}
+
+/* Fix footer gradient colors in light mode */
+html.light-mode .bg-gradient-to-r.from-neon-purple\/20.via-neon-pink\/20.to-neon-purple\/20 {
+  background-image: linear-gradient(to right, rgba(128, 13, 191, 0.2), rgba(215, 0, 140, 0.2), rgba(128, 13, 191, 0.2));
+}
+
+/* Fix gradient colors in hero and about sections */
+html.light-mode .bg-gradient-to-b.from-darker.to-dark\/70 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.8));
+}
+
+/* Fix canvas background in light mode */
+html.light-mode canvas {
+  opacity: 0.6;
+}
+
+/* Fix contact form particles in light mode */
+html.light-mode .bg-neon-purple\/10 {
+  background-color: rgba(128, 13, 191, 0.1);
+}
+
+html.light-mode .bg-neon-pink\/10 {
+  background-color: rgba(215, 0, 140, 0.1);
+}
+
+html.light-mode .bg-neon-purple\/20 {
+  background-color: rgba(128, 13, 191, 0.2);
+}
+
+/* Fix social links in light mode */
+html.light-mode .text-gray-400 {
+  color: rgba(100, 100, 100, 0.7);
+}
+
+html.light-mode .hover\:text-neon-purple:hover {
+  color: var(--neon-purple);
+}
+
+/* Fix background gradients on scroll */
+html.light-mode .from-neon-purple\/30 {
+  --tw-gradient-from: rgba(128, 13, 191, 0.3);
+}
+
+html.light-mode .to-darker {
+  --tw-gradient-to: var(--darker);
 }

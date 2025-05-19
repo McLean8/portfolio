@@ -10,6 +10,13 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Ethan McLean | Software Developer</title>
+		<script>
+			// Check for saved theme preference as soon as possible to avoid FOUC
+			const theme = localStorage.getItem('theme');
+			if (theme === 'light') {
+				document.documentElement.classList.add('light-mode');
+			}
+		</script>
 	</head>
 	<body>
 		<slot />
