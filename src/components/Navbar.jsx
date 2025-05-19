@@ -8,6 +8,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [darkMode, setDarkMode] = useState(true)
+  const [hoverDesktopTheme, setHoverDesktopTheme] = useState(false)
+  const [hoverMobileTheme, setHoverMobileTheme] = useState(false)
   const navRef = useRef(null)
 
   // State to track clicked nav items
@@ -139,8 +141,17 @@ const Navbar = () => {
               ))}
 
               {/* Theme Toggle Button */}
-              <button onClick={toggleTheme} className='ml-6 w-12 h-12 rounded-full bg-darker/40 border border-neon-purple/20 backdrop-blur-md flex items-center justify-center hover:bg-darker/60 transition-all duration-500 hover:scale-110 outline-none group relative' aria-label='Toggle theme'>
-                <div className='relative w-full h-full flex items-center justify-center overflow-hidden'>
+              <button
+                onClick={toggleTheme}
+                onMouseEnter={() => setHoverDesktopTheme(true)}
+                onMouseLeave={() => setHoverDesktopTheme(false)}
+                className='ml-6 flex items-center justify-center transition-all duration-300 outline-none group relative'
+                style={{
+                  backgroundColor: 'transparent',
+                  transform: hoverDesktopTheme ? 'scale(1.1)' : 'scale(1)',
+                }}
+                aria-label='Toggle theme'>
+                <div className='relative w-12 h-12 flex items-center justify-center overflow-hidden'>
                   <div className={`absolute transition-all duration-500 transform ${darkMode ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'}`}>
                     <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6 text-yellow-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                       <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z' />
@@ -160,8 +171,17 @@ const Navbar = () => {
             {/* Mobile Navigation Button */}
             <div className='md:hidden flex items-center'>
               {/* Mobile Theme Toggle */}
-              <button onClick={toggleTheme} className='mr-4 w-10 h-10 rounded-md bg-darker/40 border border-neon-purple/20 backdrop-blur-md flex items-center justify-center hover:bg-darker/60 transition-all duration-500 hover:scale-110 focus:outline-none group relative' aria-label='Toggle theme'>
-                <div className='relative w-full h-full flex items-center justify-center overflow-hidden'>
+              <button
+                onClick={toggleTheme}
+                onMouseEnter={() => setHoverMobileTheme(true)}
+                onMouseLeave={() => setHoverMobileTheme(false)}
+                className='mr-4 flex items-center justify-center transition-all duration-300 focus:outline-none group relative'
+                style={{
+                  backgroundColor: 'transparent',
+                  transform: hoverMobileTheme ? 'scale(1.1)' : 'scale(1)',
+                }}
+                aria-label='Toggle theme'>
+                <div className='relative w-10 h-10 flex items-center justify-center overflow-hidden'>
                   <div className={`absolute transition-all duration-500 transform ${darkMode ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'}`}>
                     <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5 text-yellow-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                       <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z' />
@@ -174,7 +194,13 @@ const Navbar = () => {
                   </div>
                 </div>
                 <span className='sr-only'>{darkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
-                <span className='absolute right-0 top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-light/70 whitespace-nowrap bg-darker/80 px-2 py-1 rounded'>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                <span
+                  className='absolute right-0 top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-light/70 whitespace-nowrap px-2 py-1 rounded'
+                  style={{
+                    backgroundColor: !darkMode ? 'rgba(128, 13, 191, 0.2)' : 'rgba(5, 5, 5, 0.8)',
+                  }}>
+                  {darkMode ? 'Light Mode' : 'Dark Mode'}
+                </span>
               </button>
 
               {/* Menu Toggle Button */}
