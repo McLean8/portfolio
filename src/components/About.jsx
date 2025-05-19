@@ -168,25 +168,8 @@ const About = () => {
             {/* Content */}
             <div ref={contentRef} className='md:col-span-7 order-2 md:order-1'>
               <div ref={paragraphRef} className='font-mono space-y-5 text-light/75'>
-                <p className='text-base leading-relaxed'>
-                  I'm a <span>passionate and versatile full-stack developer</span> who loves creating{' '}
-                  <span ref={responsiveRef} style={highlightedWords.responsive ? highlightStyle : {}} className='transition-all duration-500'>
-                    responsive, high-quality
-                  </span>{' '}
-                  websites and web apps that look great and just work.
-                </p>
-
-                <p className='text-base leading-relaxed'>
-                  I focus on building{' '}
-                  <span ref={userFriendlyRef} style={highlightedWords.userFriendly ? highlightStyle : {}} className='transition-all duration-500'>
-                    pixel-perfect, user-friendly interfaces
-                  </span>{' '}
-                  with a strong eye for <span>design and performance</span>. Whether it's a sleek marketing site or a full-scale application, I enjoy bringing ideas to life with{' '}
-                  <span ref={cleanRef} style={highlightedWords.clean ? highlightStyle : {}} className='transition-all duration-500'>
-                    clean, modern code
-                  </span>
-                  .
-                </p>
+                <p className='text-base leading-relaxed'>Throughout my career, I've gained comprehensive full-stack web development experience, from frontend and UX/design to backend (using various languages), databases, DevOps, and testing. While my primary skills lie in JavaScript and React/NodeJS , I'm a highly adaptable developer, comfortable tackling new challenges and technologies to meet project demands.</p>
+                <p className='text-base leading-relaxed'>I excel at collaborating with diverse teams—including stakeholders, UX, product owners, and technical teams—to deliver high-quality applications and websites. My focus is on creating pixel-perfect, user-centric interfaces and writing simple, clean, and testable code that is easily understood by others.</p>
               </div>
             </div>
 
