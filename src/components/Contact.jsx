@@ -63,13 +63,30 @@ const Contact = () => {
     }))
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     setFormSubmitting(true)
+    setFormError(false)
 
-    // Simulate form submission
-    setTimeout(() => {
-      // In a real implementation, you would send the form data to a server
+    try {
+      console.log('Submitting form with data:', formState)
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      })
+
+      console.log('Response status:', response.status)
+      const data = await response.json()
+      console.log('Response data:', data)
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
       setFormSubmitting(false)
       setFormSubmitted(true)
 
@@ -82,7 +99,13 @@ const Contact = () => {
           message: '',
         })
       }, 3000)
-    }, 1500)
+    } catch (error) {
+      console.error('Error sending message:', error)
+      setFormSubmitting(false)
+      setFormError(true)
+      // Show error message to user
+      alert(`Failed to send message: ${error.message}`)
+    }
   }
 
   // Handle scroll to top
