@@ -50,8 +50,12 @@ const Footer = () => {
             </span>
           </div>
 
-          <div className='mb-6 md:mb-0 text-center md:text-left'>
+          <div className='mb-6 md:mb-0 text-center'>
             <p className='text-light/60 text-sm hover:text-light/80 transition-colors duration-300 ease-in-out'>&copy; {currentYear} Ethan McLean. All rights reserved.</p>
+          </div>
+
+          <div className='mb-6 md:mb-0'>
+            <p className='text-light/60 text-sm hover:text-light/80 transition-colors duration-300 ease-in-out'>Projects coming soon...</p>
           </div>
         </div>
       </div>
