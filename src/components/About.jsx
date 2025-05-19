@@ -6,31 +6,12 @@ import GlowText from './GlowText'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const About = () => {
-  const sectionRef = useRef(null)
+// Custom hook for animations
+const useElementAnimations = () => {
   const titleRef = useRef(null)
   const contentRef = useRef(null)
   const imgRef = useRef(null)
   const arrowRef = useRef(null)
-
-  // Create a single ref for the paragraph containing the keywords
-  const paragraphRef = useRef(null)
-
-  // Create refs for words that will be highlighted
-  const passionateRef = useRef(null)
-  const responsiveRef = useRef(null)
-  const userFriendlyRef = useRef(null)
-  const performanceRef = useRef(null)
-  const cleanRef = useRef(null)
-
-  // State to track highlighted words
-  const [highlightedWords, setHighlightedWords] = useState({
-    passionate: false,
-    responsive: false,
-    userFriendly: false,
-    performance: false,
-    clean: false,
-  })
 
   useEffect(() => {
     // Title animation
@@ -89,7 +70,26 @@ const About = () => {
       ease: 'sine.inOut',
     })
 
-    // Setup a single intersection observer for the paragraph
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
+  return { titleRef, contentRef, imgRef, arrowRef }
+}
+
+// Custom hook for keyword highlighting
+const useKeywordHighlight = () => {
+  const paragraphRef = useRef(null)
+  const [highlightedWords, setHighlightedWords] = useState({
+    passionate: false,
+    responsive: false,
+    userFriendly: false,
+    performance: false,
+    clean: false,
+  })
+
+  useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: '-100px 0px',
@@ -98,14 +98,11 @@ const About = () => {
 
     // Order of keywords to highlight sequentially
     const highlightSequence = ['passionate', 'responsive', 'userFriendly', 'performance', 'clean']
-
-    // Delay between each highlight (in ms)
     const highlightDelay = 800
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Start the sequential highlighting when paragraph is visible
           highlightSequence.forEach((word, index) => {
             setTimeout(() => {
               setHighlightedWords(prev => ({
@@ -114,27 +111,195 @@ const About = () => {
               }))
             }, index * highlightDelay)
           })
-
-          // Stop observing once triggered
           observer.unobserve(entry.target)
         }
       })
     }, observerOptions)
 
-    // Start observing the paragraph
     if (paragraphRef.current) {
       observer.observe(paragraphRef.current)
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-
-      // Cleanup observer
       if (paragraphRef.current) {
         observer.unobserve(paragraphRef.current)
       }
     }
   }, [])
+
+  // Style for highlighted text
+  const highlightStyle = {
+    color: 'var(--neon-purple)',
+    textShadow: '0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple)',
+    transition: 'all 0.5s ease-in-out',
+  }
+
+  return { paragraphRef, highlightedWords, highlightStyle }
+}
+
+// Code Editor Component
+const CodeEditorIllustration = () => (
+  <div className='relative max-w-xs border-2 border-neon-purple/30 rounded-md overflow-hidden'>
+    <div className='absolute inset-0 bg-neon-purple/10 group-hover:bg-neon-purple/5 transition duration-300'></div>
+
+    <div className='bg-darker p-6 w-full min-h-[400px] flex flex-col'>
+      {/* Code editor header */}
+      <div className='flex items-center mb-4'>
+        <div className='flex space-x-2'>
+          <div className='w-3 h-3 rounded-full bg-red-500'></div>
+          <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
+          <div className='w-3 h-3 rounded-full bg-green-500'></div>
+        </div>
+        <div className='ml-4 px-3 py-1 rounded bg-dark text-xs text-neon-purple/80 font-mono'>index.js</div>
+      </div>
+
+      {/* Code content */}
+      <div className='font-mono text-xs leading-relaxed text-left flex-1'>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>1</span>
+          <span className='text-blue-400'>import</span>
+          <span className='text-white'>&nbsp;React&nbsp;</span>
+          <span className='text-blue-400'>from</span>
+          <span className='text-green-300'>&nbsp;'react'</span>
+          <span className='text-white'>;</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>2</span>
+          <span className='text-white'></span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>3</span>
+          <span className='text-purple-400'>const</span>
+          <span className='text-yellow-300'>&nbsp;Portfolio</span>
+          <span className='text-white'>&nbsp;= ()&nbsp;</span>
+          <span className='text-purple-400'>=&gt;</span>
+          <span className='text-white'>&nbsp;{`{`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>4</span>
+          <span className='text-white pl-4'>
+            <span className='text-purple-400'>return</span>
+            <span className='text-white'>&nbsp;(</span>
+          </span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>5</span>
+          <span className='text-white pl-8'>{`<`}</span>
+          <span className='text-red-500'>div</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>6</span>
+          <span className='text-white pl-12'>{`<`}</span>
+          <span className='text-red-500'>h1</span>
+          <span className='text-white'>{`>`}</span>
+          <span className='text-neon-purple'>Clean&nbsp;Code</span>
+          <span className='text-white'>{`</`}</span>
+          <span className='text-red-500'>h1</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>7</span>
+          <span className='text-white pl-12'>{`<`}</span>
+          <span className='text-red-500'>p</span>
+          <span className='text-white'>{`>`}</span>
+          <span className='text-gray-300'>Beautiful&nbsp;Interfaces</span>
+          <span className='text-white'>{`</`}</span>
+          <span className='text-red-500'>p</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>8</span>
+          <span className='text-white pl-12'>{`<`}</span>
+          <span className='text-red-500'>p</span>
+          <span className='text-white'>{`>`}</span>
+          <span className='text-gray-300'>Responsive&nbsp;Design</span>
+          <span className='text-white'>{`</`}</span>
+          <span className='text-red-500'>p</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>9</span>
+          <span className='text-white pl-12'>{`<`}</span>
+          <span className='text-red-500'>button</span>
+          <span className='text-amber-300'>&nbsp;className</span>
+          <span className='text-white'>=</span>
+          <span className='text-green-300'>"neon-glow"</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>10</span>
+          <span className='text-white pl-16'>Explore&nbsp;Projects</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>11</span>
+          <span className='text-white pl-12'>{`</`}</span>
+          <span className='text-red-500'>button</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>12</span>
+          <span className='text-white pl-8'>{`</`}</span>
+          <span className='text-red-500'>div</span>
+          <span className='text-white'>{`>`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>13</span>
+          <span className='text-white pl-4'>);</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>14</span>
+          <span className='text-white'>{`};`}</span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>15</span>
+          <span className='text-white'></span>
+        </div>
+        <div className='flex'>
+          <span className='text-gray-500 w-6 select-none'>16</span>
+          <span className='text-blue-400'>export</span>
+          <span className='text-blue-400'>&nbsp;default</span>
+          <span className='text-yellow-300'>&nbsp;Portfolio</span>
+          <span className='text-white'>;</span>
+        </div>
+      </div>
+
+      {/* Cursor effect */}
+      <div className='h-4 w-2 bg-neon-purple/70 animate-pulse absolute top-[205px] left-[143px]'></div>
+    </div>
+
+    {/* Overlay effect */}
+    <div className='absolute inset-0 bg-gradient-to-br from-transparent to-darker/30 pointer-events-none'></div>
+  </div>
+)
+
+// Scroll Arrow Component
+const ScrollArrow = ({ arrowRef, onClick }) => (
+  <div ref={arrowRef} onClick={onClick} className='absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer'>
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#b026ff' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+      <path d='M7 13l5 5 5-5M7 7l5 5 5-5' />
+    </svg>
+  </div>
+)
+
+// About Content Component
+const AboutContent = ({ contentRef, paragraphRef, highlightStyle, highlightedWords }) => (
+  <div ref={contentRef} className='md:col-span-7 order-2 md:order-1'>
+    <div ref={paragraphRef} className='font-mono space-y-5 text-light/75'>
+      <p className='text-base leading-relaxed'>
+        Throughout my career, I've gained comprehensive full-stack web development experience, from <span style={highlightStyle}>frontend</span> and <span style={highlightStyle}>UX/design</span> to <span style={highlightStyle}>backend</span> (using various languages), databases, DevOps, and testing. While my primary skills lie in <span style={highlightStyle}>JavaScript</span> and <span style={highlightStyle}>React/NodeJS</span>, I'm a highly adaptable developer, comfortable tackling new challenges and technologies to meet project demands.
+      </p>
+      <p className='text-base leading-relaxed'>
+        I excel at collaborating with diverse teams—including stakeholders, UX, product owners, and technical teams—to deliver high-quality applications and websites. My focus is on creating <span style={highlightStyle}>pixel-perfect</span>, <span style={highlightStyle}>user-centric</span> interfaces and writing simple, <span style={highlightedWords.clean ? highlightStyle : {}}>clean</span>, and <span style={highlightStyle}>testable code</span> that is easily understood by others.
+      </p>
+    </div>
+  </div>
+)
+
+const About = () => {
+  const sectionRef = useRef(null)
+  const { titleRef, contentRef, imgRef, arrowRef } = useElementAnimations()
+  const { paragraphRef, highlightedWords, highlightStyle } = useKeywordHighlight()
 
   // Handle arrow click to scroll to next section
   const scrollToNext = () => {
@@ -142,13 +307,6 @@ const About = () => {
     if (skills) {
       skills.scrollIntoView({ behavior: 'smooth' })
     }
-  }
-
-  // Style for highlighted text
-  const highlightStyle = {
-    color: 'var(--neon-purple)',
-    textShadow: '0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple)',
-    transition: 'all 0.5s ease-in-out',
   }
 
   return (
@@ -165,154 +323,13 @@ const About = () => {
 
           <div className='grid grid-cols-1 md:grid-cols-12 gap-8 items-start'>
             {/* Content */}
-            <div ref={contentRef} className='md:col-span-7 order-2 md:order-1'>
-              <div ref={paragraphRef} className='font-mono space-y-5 text-light/75'>
-                <p className='text-base leading-relaxed'>
-                  Throughout my career, I've gained comprehensive full-stack web development experience, from <span style={highlightStyle}>frontend</span> and <span style={highlightStyle}>UX/design</span> to <span style={highlightStyle}>backend</span> (using various languages), databases, DevOps, and testing. While my primary skills lie in <span style={highlightStyle}>JavaScript</span> and <span style={highlightStyle}>React/NodeJS</span>, I'm a highly adaptable developer, comfortable tackling new challenges and technologies to meet project demands.
-                </p>
-                <p className='text-base leading-relaxed'>
-                  I excel at collaborating with diverse teams—including stakeholders, UX, product owners, and technical teams—to deliver high-quality applications and websites. My focus is on creating <span style={highlightStyle}>pixel-perfect</span>, <span style={highlightStyle}>user-centric</span> interfaces and writing simple, <span style={highlightedWords.clean ? highlightStyle : {}}>clean</span>, and <span style={highlightStyle}>testable code</span> that is easily understood by others.
-                </p>
-              </div>
-            </div>
+            <AboutContent contentRef={contentRef} paragraphRef={paragraphRef} highlightStyle={highlightStyle} highlightedWords={highlightedWords} />
 
             {/* Image container */}
             <div ref={imgRef} className='md:col-span-5 order-1 md:order-2 flex justify-center md:justify-end'>
               <div className='relative group'>
                 <div className='absolute -inset-1.5 bg-neon-purple/20 rounded-md blur opacity-20 group-hover:opacity-30 transition duration-500'></div>
-                <div className='relative max-w-xs border-2 border-neon-purple/30 rounded-md overflow-hidden'>
-                  <div className='absolute inset-0 bg-neon-purple/10 group-hover:bg-neon-purple/5 transition duration-300'></div>
-
-                  {/* Code editor themed illustration */}
-                  <div className='bg-darker p-6 w-full min-h-[400px] flex flex-col'>
-                    {/* Code editor header */}
-                    <div className='flex items-center mb-4'>
-                      <div className='flex space-x-2'>
-                        <div className='w-3 h-3 rounded-full bg-red-500'></div>
-                        <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
-                        <div className='w-3 h-3 rounded-full bg-green-500'></div>
-                      </div>
-                      <div className='ml-4 px-3 py-1 rounded bg-dark text-xs text-neon-purple/80 font-mono'>index.js</div>
-                    </div>
-
-                    {/* Code content */}
-                    <div className='font-mono text-xs leading-relaxed text-left flex-1'>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>1</span>
-                        <span className='text-blue-400'>import</span>
-                        <span className='text-white'>&nbsp;React&nbsp;</span>
-                        <span className='text-blue-400'>from</span>
-                        <span className='text-green-300'>&nbsp;'react'</span>
-                        <span className='text-white'>;</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>2</span>
-                        <span className='text-white'></span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>3</span>
-                        <span className='text-purple-400'>const</span>
-                        <span className='text-yellow-300'>&nbsp;Portfolio</span>
-                        <span className='text-white'>&nbsp;= ()&nbsp;</span>
-                        <span className='text-purple-400'>=&gt;</span>
-                        <span className='text-white'>&nbsp;{`{`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>4</span>
-                        <span className='text-white pl-4'>
-                          <span className='text-purple-400'>return</span>
-                          <span className='text-white'>&nbsp;(</span>
-                        </span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>5</span>
-                        <span className='text-white pl-8'>{`<`}</span>
-                        <span className='text-red-500'>div</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>6</span>
-                        <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-red-500'>h1</span>
-                        <span className='text-white'>{`>`}</span>
-                        <span className='text-neon-purple'>Clean&nbsp;Code</span>
-                        <span className='text-white'>{`</`}</span>
-                        <span className='text-red-500'>h1</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>7</span>
-                        <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-red-500'>p</span>
-                        <span className='text-white'>{`>`}</span>
-                        <span className='text-gray-300'>Beautiful&nbsp;Interfaces</span>
-                        <span className='text-white'>{`</`}</span>
-                        <span className='text-red-500'>p</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>8</span>
-                        <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-red-500'>p</span>
-                        <span className='text-white'>{`>`}</span>
-                        <span className='text-gray-300'>Responsive&nbsp;Design</span>
-                        <span className='text-white'>{`</`}</span>
-                        <span className='text-red-500'>p</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>9</span>
-                        <span className='text-white pl-12'>{`<`}</span>
-                        <span className='text-red-500'>button</span>
-                        <span className='text-amber-300'>&nbsp;className</span>
-                        <span className='text-white'>=</span>
-                        <span className='text-green-300'>"neon-glow"</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>10</span>
-                        <span className='text-white pl-16'>Explore&nbsp;Projects</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>11</span>
-                        <span className='text-white pl-12'>{`</`}</span>
-                        <span className='text-red-500'>button</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>12</span>
-                        <span className='text-white pl-8'>{`</`}</span>
-                        <span className='text-red-500'>div</span>
-                        <span className='text-white'>{`>`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>13</span>
-                        <span className='text-white pl-4'>);</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>14</span>
-                        <span className='text-white'>{`};`}</span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>15</span>
-                        <span className='text-white'></span>
-                      </div>
-                      <div className='flex'>
-                        <span className='text-gray-500 w-6 select-none'>16</span>
-                        <span className='text-blue-400'>export</span>
-                        <span className='text-blue-400'>&nbsp;default</span>
-                        <span className='text-yellow-300'>&nbsp;Portfolio</span>
-                        <span className='text-white'>;</span>
-                      </div>
-                    </div>
-
-                    {/* Cursor effect */}
-                    <div className='h-4 w-2 bg-neon-purple/70 animate-pulse absolute top-[205px] left-[143px]'></div>
-                  </div>
-
-                  {/* Overlay effect */}
-                  <div className='absolute inset-0 bg-gradient-to-br from-transparent to-darker/30 pointer-events-none'></div>
-                </div>
+                <CodeEditorIllustration />
               </div>
             </div>
           </div>
@@ -320,11 +337,7 @@ const About = () => {
       </div>
 
       {/* Scroll down arrow */}
-      <div ref={arrowRef} onClick={scrollToNext} className='absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer'>
-        <svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#b026ff' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
-          <path d='M7 13l5 5 5-5M7 7l5 5 5-5' />
-        </svg>
-      </div>
+      <ScrollArrow arrowRef={arrowRef} onClick={scrollToNext} />
     </section>
   )
 }
