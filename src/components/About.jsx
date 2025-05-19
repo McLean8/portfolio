@@ -285,7 +285,7 @@ const About = () => {
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>10</span>
-                        <span className='text-white pl-16 text-gray-300'>Explore&nbsp;Projects</span>
+                        <span className='text-white pl-16'>Explore&nbsp;Projects</span>
                       </div>
                       <div className='flex'>
                         <span className='text-gray-500 w-6 select-none'>11</span>
