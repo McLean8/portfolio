@@ -1,5 +1,5 @@
 import React from 'react'
-import GlowText from './GlowText'
+import GlowText from './common/GlowText'
 import useContactForm from '../hooks/useContactForm'
 import useContactAnimations from '../hooks/useContactAnimations'
 import ContactForm from './contact/ContactForm'

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import GlowText from './GlowText'
+import GlowText from './common/GlowText'
 gsap.registerPlugin(ScrollTrigger)
 
 const Footer = () => {

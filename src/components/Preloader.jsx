@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import GlowText from './GlowText'
+import GlowText from './common/GlowText'
 
 const Preloader = ({ finishLoading }) => {
   const [progress, setProgress] = useState(0)
