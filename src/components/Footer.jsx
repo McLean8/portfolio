@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
+import GlowText from './GlowText'
 gsap.registerPlugin(ScrollTrigger)
 
 const Footer = () => {
@@ -45,9 +45,9 @@ const Footer = () => {
       <div className='container mx-auto px-6'>
         <div className='flex flex-col md:flex-row justify-between items-center'>
           <div className='mb-6 md:mb-0'>
-            <a href='#home' className='text-xl font-bold font-mono tracking-wider text-neon-purple hover:text-neon-pink active:opacity-75 transition-colors duration-300 ease-in-out'>
-              EM<span className='text-neon-pink'>.</span>
-            </a>
+            <span className='text-2xl md:text-3xl font-bold tracking-tight text-neon-purple group-hover:text-neon-pink transition-colors duration-300'>
+              <GlowText text='EM' intensity='strong' />
+            </span>
           </div>
 
           <div className='mb-6 md:mb-0 text-center md:text-left'>
