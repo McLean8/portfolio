@@ -16,15 +16,15 @@ const Technologies = () => {
   const technologies = [
     {
       category: 'Frontend',
-      items: ['React', 'Next.js', 'Vue.js', 'JavaScript', 'TypeScript', 'HTML/CSS', 'Tailwind CSS'],
+      items: ['React', 'Next.js', 'JavaScript', 'TypeScript', 'HTML/CSS', 'Tailwind CSS'],
     },
     {
       category: 'Backend',
-      items: ['Node.js', 'Express', 'Python', 'Django', 'PHP', 'SQL', 'MongoDB'],
+      items: ['Node.js', 'Express', 'Python', 'SQL', 'MongoDB', 'PostgreSQL', 'MySQL'],
     },
     {
       category: 'Tools',
-      items: ['Git', 'Docker', 'AWS', 'Firebase', 'Vercel', 'Figma', 'Webpack'],
+      items: ['Git', 'Docker', 'AWS', 'Firebase', 'Vercel', 'Webpack', 'Jest', 'Cypress'],
     },
   ]
 
@@ -172,7 +172,6 @@ const Technologies = () => {
         <div className='flex flex-col gap-12'>
           {/* Section header with number */}
           <h2 ref={titleRef} className='flex items-center font-mono text-xl md:text-2xl text-neon-purple mb-2'>
-            <span className='font-mono mr-4'>02.</span>
             <span className='font-semibold'>
               <GlowText text='Technologies' intensity='strong' />
             </span>
