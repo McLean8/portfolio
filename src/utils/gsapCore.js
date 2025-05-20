@@ -1,5 +1,5 @@
 // Optimized GSAP imports to reduce bundle size
-import { gsap } from 'gsap/gsap-core'
+import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Register plugins
