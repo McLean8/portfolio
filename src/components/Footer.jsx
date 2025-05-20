@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import GlowText from './common/GlowText'
-gsap.registerPlugin(ScrollTrigger)
 
 const Footer = () => {
   const footerRef = useRef(null)
@@ -11,24 +9,30 @@ const Footer = () => {
     const element = footerRef.current
     let tween // To store the GSAP animation instance for cleanup
 
-    if (element) {
-      // Footer animation
-      tween = gsap.fromTo(
-        element,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: element,
-            start: 'top bottom-=30px', // Trigger when top of footer is 30px from viewport bottom
-            once: true, // Animate only once when it enters the viewport
-            // For your local debugging, you can add: markers: true,
-          },
-        }
-      )
-    }
+    // Import ScrollTrigger only on the client side
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger)
+
+      if (element) {
+        // Footer animation
+        tween = gsap.fromTo(
+          element,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: element,
+              start: 'top bottom-=30px', // Trigger when top of footer is 30px from viewport bottom
+              once: true, // Animate only once when it enters the viewport
+              // For your local debugging, you can add: markers: true,
+            },
+          }
+        )
+      }
+    })
 
     // Cleanup function for GSAP animation and ScrollTrigger
     return () => {
