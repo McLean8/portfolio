@@ -4,6 +4,9 @@
   
 [build.environment]
   NODE_VERSION = "18"
+  # Only mention this so Netlify knows it needs to be set in the dashboard
+  # The actual API key should be set in the Netlify dashboard
+  RESEND_API_KEY = ""
 
 # Handle SPA redirects for client-side routing if needed
 [[redirects]]
