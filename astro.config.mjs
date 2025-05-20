@@ -13,7 +13,7 @@ export default defineConfig({
 
   integrations: [react()],
 
-  output: 'server', // Enable server-side rendering
+  output: 'static', // Changed from 'server' to 'static' to enable bfcache
 
   server: {
     headers: {

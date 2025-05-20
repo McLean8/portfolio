@@ -43,7 +43,8 @@ import Preloader from '../components/Preloader';
 
 <script>
 	// Fallback to ensure content becomes visible even if preloader fails
-	window.addEventListener('DOMContentLoaded', () => {
+	// Using load event instead of DOMContentLoaded for better bfcache compatibility
+	window.addEventListener('load', () => {
 		setTimeout(() => {
 			const content = document.getElementById('content');
 			const preloader = document.getElementById('preloader-container');
@@ -56,5 +57,22 @@ import Preloader from '../components/Preloader';
 				preloader.classList.add('hidden');
 			}
 		}, 5000); // 5 second failsafe
+	});
+
+	// Handle returning from bfcache
+	window.addEventListener('pageshow', (event) => {
+		if (event.persisted) {
+			// Page was restored from bfcache
+			const content = document.getElementById('content');
+			const preloader = document.getElementById('preloader-container');
+			
+			if (content && content.classList.contains('opacity-0')) {
+				content.classList.remove('opacity-0');
+			}
+			
+			if (preloader && !preloader.classList.contains('hidden')) {
+				preloader.classList.add('hidden');
+			}
+		}
 	});
 </script>
