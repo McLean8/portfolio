@@ -1,8 +1,5 @@
 import React from 'react'
 
-/**
- * A visual illustration of a code editor
- */
 const CodeEditorIllustration = () => (
   <div className='relative max-w-xs border-2 border-neon-purple/30 rounded-md overflow-hidden'>
     <div className='absolute inset-0 bg-neon-purple/10 group-hover:bg-neon-purple/5 transition duration-300'></div>

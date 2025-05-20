@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import GlowText from '../common/GlowText'
 
-/**
- * Reusable section header with title and decoration line
- */
 const SectionHeader = ({ title, titleRef }) => {
   return (
     <h2 ref={titleRef} className='flex items-center font-mono text-xl md:text-2xl text-neon-purple mb-2'>

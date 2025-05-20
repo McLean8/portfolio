@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-/**
- * A canvas component that renders animated particles for the hero background
- */
 const ParticleCanvas = ({ canvasRef }) => {
   useEffect(() => {
     const canvas = canvasRef.current

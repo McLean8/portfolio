@@ -2,8 +2,10 @@ import { useEffect, useState, useRef } from 'react'
 import { gsap } from 'gsap'
 import MouseTracker from './common/MouseTracker'
 import GlowText from './common/GlowText'
-import { useThemeManager, useNavScroll } from '../hooks'
-import { DesktopNav, MobileNav } from './navbar/index.js'
+import useThemeManager from '../hooks/useThemeManager'
+import useNavScroll from '../hooks/useNavScroll'
+import DesktopNav from './navbar/DesktopNav'
+import MobileNav from './navbar/MobileNav'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

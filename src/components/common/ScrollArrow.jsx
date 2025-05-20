@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-/**
- * Reusable scroll arrow that animates and directs users to scroll down
- */
 const ScrollArrow = ({ arrowRef, onClick, direction = 'down' }) => {
   const getPath = () => {
     if (direction === 'up') {

@@ -51,7 +51,6 @@ const useContactForm = () => {
         })
       }, 3000)
     } catch (error) {
-      console.error('Error sending message:', error)
       setFormSubmitting(false)
       setFormError(true)
       alert(`Failed to send message: ${error.message}`)

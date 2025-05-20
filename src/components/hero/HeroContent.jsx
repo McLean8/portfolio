@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import GlowText from '../common/GlowText'
 
-/**
- * The main content of the hero section (heading, subheading)
- */
 const HeroContent = ({ titleRef, subtitleRef }) => {
   return (
     <div className='container mx-auto px-4 sm:px-6 z-10'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTechAnimations } from '../hooks'
+import useTechAnimations from '../hooks/useTechAnimations'
 import ScrollArrow from './common/ScrollArrow'
 
 // Import components and data directly
@@ -7,9 +7,6 @@ import TechCategory from './technologies/TechCategory'
 import SectionHeader from './technologies/SectionHeader'
 import { technologies } from './technologies/techData'
 
-/**
- * Technologies section displaying skills and tech stack
- */
 const Technologies = () => {
   const { sectionRef, titleRef, containerRef, arrowRef, scrollToNext } = useTechAnimations(technologies)
 

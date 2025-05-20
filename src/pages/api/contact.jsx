@@ -17,7 +17,7 @@ export async function POST({ request }) {
     console.log('Attempting to send email...')
     const data = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: ['oethanthemac@gmail.com'], // Changed back to your email for testing
+      to: ['oethanthemac@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
       react: ContactEmail({ name, email, message }),
     })

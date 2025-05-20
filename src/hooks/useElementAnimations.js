@@ -15,7 +15,6 @@ const useElementAnimations = () => {
   const arrowRef = useRef(null)
 
   useEffect(() => {
-    // Title animation
     gsap.fromTo(
       titleRef.current,
       { y: 20, opacity: 0 },
@@ -30,7 +29,6 @@ const useElementAnimations = () => {
       }
     )
 
-    // Content animation
     gsap.fromTo(
       contentRef.current,
       { y: 20, opacity: 0 },
@@ -46,7 +44,6 @@ const useElementAnimations = () => {
       }
     )
 
-    // Image animation
     gsap.fromTo(
       imgRef.current,
       { y: 20, opacity: 0 },
@@ -62,7 +59,6 @@ const useElementAnimations = () => {
       }
     )
 
-    // Arrow bounce animation
     gsap.to(arrowRef.current, {
       y: 10,
       duration: 1.5,

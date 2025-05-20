@@ -14,19 +14,16 @@ const useThemeManager = (defaultTheme = true) => {
     if (savedTheme) {
       setDarkMode(savedTheme === 'dark')
     } else {
-      setDarkMode(defaultTheme) // Ensure initial state is set if nothing in localStorage
+      setDarkMode(defaultTheme)
     }
   }, [defaultTheme])
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.remove('light-mode')
-      // Ensure dark mode is explicitly set or default by removing light-mode
-      // Optionally: document.documentElement.classList.add('dark-mode');
       localStorage.setItem('theme', 'dark')
     } else {
       document.documentElement.classList.add('light-mode')
-      // Optionally: document.documentElement.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light')
     }
   }, [darkMode])

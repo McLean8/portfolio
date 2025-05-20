@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import GlowText from '../common/GlowText'
 import TechItem from './TechItem'
 
-/**
- * Component that renders a category of technologies with its items
- */
 const TechCategory = ({ category, items, startIndex }) => {
   return (
     <div className='grid gap-6'>

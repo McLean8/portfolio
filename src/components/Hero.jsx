@@ -1,13 +1,9 @@
 import React from 'react'
-import { useHeroAnimations } from '../hooks'
+import useHeroAnimations from '../hooks/useHeroAnimations'
 import ParticleCanvas from './hero/ParticleCanvas'
 import HeroContent from './hero/HeroContent'
 import ScrollButton from './hero/ScrollButton'
 
-/**
- * Hero section component
- * The first section visible when the page loads
- */
 const Hero = () => {
   const { heroRef, titleRef, subtitleRef, btnRef, canvasRef } = useHeroAnimations()
 

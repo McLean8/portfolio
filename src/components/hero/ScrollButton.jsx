@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-/**
- * Animated scroll button that directs users to scroll to a specific section
- */
 const ScrollButton = ({ btnRef }) => {
   const scrollToAbout = () => {
     const about = document.getElementById('about')

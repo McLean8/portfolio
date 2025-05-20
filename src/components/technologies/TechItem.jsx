@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-/**
- * Component that renders a technology item card
- */
 const TechItem = ({ tech, index }) => {
   return (
     <div

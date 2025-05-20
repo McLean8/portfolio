@@ -52,7 +52,6 @@ const useKeywordHighlight = () => {
     }
   }, [])
 
-  // Style for highlighted text
   const highlightStyle = {
     color: 'var(--neon-purple)',
     textShadow: '0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple)',

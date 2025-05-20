@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-/**
- * Main content section for the About component
- */
 const AboutContent = ({ contentRef, paragraphRef, highlightStyle, highlightedWords }) => (
   <div ref={contentRef} className='md:col-span-7 order-2 md:order-1'>
     <div ref={paragraphRef} className='font-mono space-y-5 text-light/75'>

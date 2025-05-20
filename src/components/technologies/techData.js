@@ -1,6 +1,3 @@
-/**
- * Technology categories and items
- */
 export const technologies = [
   {
     category: 'Frontend',

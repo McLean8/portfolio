@@ -13,7 +13,6 @@ const useHeroAnimations = () => {
   const canvasRef = useRef(null)
 
   useEffect(() => {
-    // GSAP animations
     const tl = gsap.timeline()
 
     tl.fromTo(titleRef.current, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.2).fromTo(subtitleRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.5).fromTo(btnRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.7)

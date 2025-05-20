@@ -2,17 +2,14 @@ import { useRef } from 'react'
 import GlowText from './common/GlowText'
 
 // Import custom hooks
-import { useElementAnimations, useKeywordHighlight } from '../hooks'
+import useElementAnimations from '../hooks/useElementAnimations'
+import useKeywordHighlight from '../hooks/useKeywordHighlight'
 
 // Import component parts directly
 import CodeEditorIllustration from './about/CodeEditorIllustration'
 import ScrollArrow from './about/ScrollArrow'
 import AboutContent from './about/AboutContent'
 
-/**
- * About section component
- * Displays professional background and skills with animated elements
- */
 const About = () => {
   const sectionRef = useRef(null)
   const { titleRef, contentRef, imgRef, arrowRef } = useElementAnimations()
