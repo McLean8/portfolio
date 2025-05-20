@@ -20,11 +20,11 @@ import Preloader from '../components/Preloader';
 		
 		<!-- Main content becomes visible after preloader completes -->
 		<div id="content" class="opacity-0 transition-opacity duration-500">
-			<Navbar client:load />
-			<Hero client:load />
-			<About client:load />
-			<Technologies client:load />
-			<Contact client:load />
+			<Navbar client:idle />
+			<Hero client:visible />
+			<About client:visible />
+			<Technologies client:visible />
+			<Contact client:visible />
 			<Footer client:load />
 		</div>
 	</div>

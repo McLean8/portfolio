@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { gsap } from '../utils/gsapCore'
 
 /**
  * Custom hook for Hero section animations
