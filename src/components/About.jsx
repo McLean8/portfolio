@@ -7,7 +7,7 @@ import useKeywordHighlight from '../hooks/useKeywordHighlight'
 
 // Import component parts directly
 import CodeEditorIllustration from './about/CodeEditorIllustration'
-import ScrollArrow from './about/ScrollArrow'
+import ScrollArrow from './common/ScrollArrow'
 import AboutContent from './about/AboutContent'
 
 const About = () => {
