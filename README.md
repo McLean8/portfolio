@@ -87,3 +87,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <sub>Built with ❤️ by McLean</sub>
 </div>
+
+# Contact Form Setup
+
+The portfolio includes a contact form powered by [Resend](https://resend.com). For setup instructions, see [CONTACT_SETUP.md](./CONTACT_SETUP.md).

@@ -1,13 +1,17 @@
 import { Resend } from 'resend'
 import ContactEmail from '../../emails/ContactEmail'
 
-// Handle missing API key gracefully
-const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY
-const resend = apiKey ? new Resend(apiKey) : null
+// Initialize Resend with API key from environment variable
+const resend = new Resend(import.meta.env.RESEND_API_KEY)
+
+export const prerender = false
 
 export async function POST({ request }) {
   try {
-    const { name, email, message } = await request.json()
+    const formData = await request.formData()
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const message = formData.get('message')
 
     if (!name || !email || !message) {
       return new Response(
@@ -24,25 +28,9 @@ export async function POST({ request }) {
 
     console.log('Attempting to send email with data:', { name, email, message })
 
-    // If Resend API key is missing, log a message and return a mock success response
-    if (!resend) {
-      console.warn('Resend API key is missing. Email not sent.')
-      return new Response(
-        JSON.stringify({
-          success: true,
-          data: { id: 'mock-email-id' },
-          message: 'API key missing - email would have been sent in production',
-        }),
-        {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
-    }
-
     const data = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['oethanthemac@gmail.com'],
+      from: 'onboarding@resend.dev',
+      to: import.meta.env.CONTACT_EMAIL || 'oethanthemac@gmail.com',
       subject: `New Contact Form Submission from ${name}`,
       react: ContactEmail({ name, email, message }),
     })

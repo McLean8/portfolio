@@ -39,6 +39,7 @@ export default defineConfig({
           'React.createRoot': 'null', // Force legacy mode which is smaller
         }
       : {},
+    envPrefix: ['RESEND_', 'CONTACT_'],
   },
 
   integrations: [

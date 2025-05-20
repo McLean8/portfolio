@@ -68,7 +68,7 @@ const MobileNav = ({ navItems, activeSection, darkMode, toggleTheme, isMenuOpen,
                 setIsMenuOpen(false) // Close menu on item click
               }}
               className={`mobile-nav-link my-2 py-3 px-4 rounded-xl flex items-center transition-all duration-300 outline-none
-                ${activeSection === item.name.toLowerCase() || (item.name === 'Technologies' && activeSection === 'technologies') ? 'text-neon-purple font-medium text-shadow-md' : 'text-light/80 hover:text-white hover:text-shadow-sm'}
+                ${activeSection === item.name.toLowerCase() || (item.name === 'Technologies' && activeSection === 'technologies') ? 'text-neon-purple font-medium text-shadow-md' : 'text-light/80 hover:text-white'}
               `}>
               <span className='text-xl font-medium transition-all duration-300'>
                 <GlowText text={item.name} intensity={clickedItems[item.name] ? 'strong' : 'white'} className={clickedItems[item.name] ? 'text-neon-purple animate-pulse' : 'text-white'} />

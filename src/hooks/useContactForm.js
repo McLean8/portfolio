@@ -7,7 +7,7 @@ const useContactForm = () => {
     message: '',
   })
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const [formError, setFormError] = useState(false)
+  const [formError, setFormError] = useState(null)
   const [formSubmitting, setFormSubmitting] = useState(false)
 
   const handleChange = e => {
@@ -21,21 +21,33 @@ const useContactForm = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     setFormSubmitting(true)
-    setFormError(false)
+    setFormError(null)
 
     try {
+      const formData = new FormData()
+      formData.append('name', formState.name)
+      formData.append('email', formState.email)
+      formData.append('message', formState.message)
+
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
+        body: formData,
       })
 
-      const data = await response.json()
+      // Handle non-JSON or invalid JSON responses
+      let data
+      try {
+        const text = await response.text()
+        data = text ? JSON.parse(text) : {}
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+        throw new Error('Server returned invalid response format')
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
+        // Extract the detailed error message
+        const errorMessage = data.error || `Server error: ${response.status}`
+        throw new Error(errorMessage)
       }
 
       setFormSubmitting(false)
@@ -51,9 +63,9 @@ const useContactForm = () => {
         })
       }, 3000)
     } catch (error) {
+      console.error('Contact form submission error:', error)
       setFormSubmitting(false)
-      setFormError(true)
-      alert(`Failed to send message: ${error.message}`)
+      setFormError(error.message || 'Failed to send message. Please try again later.')
     }
   }
 

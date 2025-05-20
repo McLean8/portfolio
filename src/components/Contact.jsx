@@ -9,7 +9,7 @@ import BackgroundParticles from './common/BackgroundParticles'
 
 const Contact = () => {
   const { sectionRef, titleRef, formRef } = useContactAnimations()
-  const { formState, handleChange, handleSubmit, formSubmitted, formSubmitting } = useContactForm()
+  const { formState, handleChange, handleSubmit, formSubmitted, formSubmitting, formError } = useContactForm()
 
   return (
     <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-40 bg-darker relative overflow-hidden'>
@@ -27,7 +27,7 @@ const Contact = () => {
 
           {/* Form */}
           <div ref={formRef}>
-            <ContactForm formState={formState} handleChange={handleChange} handleSubmit={handleSubmit} formSubmitted={formSubmitted} formSubmitting={formSubmitting} />
+            <ContactForm formState={formState} handleChange={handleChange} handleSubmit={handleSubmit} formSubmitted={formSubmitted} formSubmitting={formSubmitting} formError={formError} />
           </div>
         </div>
       </div>

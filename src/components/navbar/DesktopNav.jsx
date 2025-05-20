@@ -13,8 +13,8 @@ const DesktopNav = ({ navItems, activeSection, darkMode, toggleTheme, handleNavI
           target={item.type === 'pdf' ? '_blank' : undefined}
           rel={item.type === 'pdf' ? 'noopener noreferrer' : undefined}
           onClick={() => handleNavItemClick(item.name, item.type, item.href)}
-          className={`nav-link relative text-xl font-medium transition-all duration-300 outline-none hover:text-shadow-sm
-            ${activeSection === item.name.toLowerCase() || (item.name === 'Technologies' && activeSection === 'technologies') ? 'text-neon-purple text-shadow-md' : 'text-light/90 hover:text-white hover:text-shadow-sm'}
+          className={`nav-link relative text-xl font-medium transition-all duration-300 outline-none
+            ${activeSection === item.name.toLowerCase() || (item.name === 'Technologies' && activeSection === 'technologies') ? 'text-neon-purple text-shadow-md' : 'text-light/90 hover:text-white'}
           `}>
           <span className='transition-all duration-300 hover:text-shadow-md'>
             <GlowText text={item.name} intensity={clickedItems[item.name] ? 'strong' : 'white'} className={clickedItems[item.name] ? 'text-neon-purple animate-pulse' : 'text-white'} />
