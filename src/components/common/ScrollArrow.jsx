@@ -10,11 +10,11 @@ const ScrollArrow = ({ arrowRef, onClick, direction = 'down' }) => {
   }
 
   return (
-    <div ref={arrowRef} onClick={onClick} className='absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer' aria-label={`Scroll ${direction}`}>
+    <button ref={arrowRef} onClick={onClick} className='absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer bg-transparent border-0 p-0' aria-label={`Scroll ${direction}`}>
       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#b026ff' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
         <path d={getPath()} />
       </svg>
-    </div>
+    </button>
   )
 }
 

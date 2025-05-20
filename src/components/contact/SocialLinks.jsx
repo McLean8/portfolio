@@ -1,7 +1,8 @@
 import React from 'react'
 
 const SocialLink = ({ href, ariaLabel, children }) => (
-  <a href={href} target='_blank' rel='noopener noreferrer' aria-label={ariaLabel} className='text-gray-400 hover:text-neon-purple transition-colors duration-300'>
+  <a href={href} target='_blank' rel='noopener noreferrer' className='text-gray-400 hover:text-neon-purple transition-colors duration-300'>
+    <span className='sr-only'>{ariaLabel}</span>
     {children}
   </a>
 )
