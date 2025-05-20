@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 
 /**
  * Custom hook for managing navbar scroll-related states.
@@ -8,51 +8,75 @@ import { useState, useEffect } from 'react'
 const useNavScroll = navItems => {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const rafRef = useRef(null)
+  const ticking = useRef(false)
+  const lastScrollY = useRef(0)
 
-  useEffect(() => {
-    const handlePageScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handlePageScroll)
-    handlePageScroll() // Initial check for scrolled state
-    return () => window.removeEventListener('scroll', handlePageScroll)
-  }, [])
+  // Memoize section IDs to avoid recalculating on every render
+  const sectionIds = useMemo(() => {
+    return navItems.filter(item => item.type === 'scroll').map(item => (item.name === 'Technologies' ? 'skills' : item.name.toLowerCase()))
+  }, [navItems])
 
-  useEffect(() => {
-    const handleActiveSectionUpdate = () => {
-      // If at the very top, set active section to 'home'
-      if (window.scrollY === 0) {
-        setActiveSection('home')
-        return
-      }
+  // Memoize section elements to avoid querying DOM repeatedly
+  const sections = useMemo(() => {
+    if (typeof document === 'undefined') return []
+    return sectionIds.map(id => document.getElementById(id)).filter(Boolean)
+  }, [sectionIds])
 
-      const sections = navItems
-        .filter(item => item.type === 'scroll')
-        .map(item => {
-          const id = item.name === 'Technologies' ? 'skills' : item.name.toLowerCase()
-          return document.getElementById(id)
-        })
-        .filter(Boolean) // Remove any nulls if elements weren't found
+  // Combined scroll handler using requestAnimationFrame
+  const handleScroll = useCallback(() => {
+    lastScrollY.current = window.scrollY
 
-      const scrollPosition = window.scrollY + 100 // Adjusted for better active state feeling
-      let currentSectionId = 'home' // Default to home
+    if (!ticking.current) {
+      ticking.current = true
 
-      // Iterate from bottom to top of sections in view
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        if (section.offsetTop <= scrollPosition) {
-          currentSectionId = section.id === 'skills' ? 'technologies' : section.id
-          break // Found the current active section
+      rafRef.current = requestAnimationFrame(() => {
+        // Handle scrolled state
+        const isScrolled = lastScrollY.current > 50
+        if (isScrolled !== scrolled) {
+          setScrolled(isScrolled)
         }
-      }
-      setActiveSection(currentSectionId)
+
+        // Handle active section
+        if (lastScrollY.current === 0) {
+          setActiveSection('home')
+        } else {
+          const scrollPosition = lastScrollY.current + 100
+          let currentSectionId = 'home'
+
+          // Loop from bottom to top to find active section
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i]
+            if (section && section.offsetTop <= scrollPosition) {
+              currentSectionId = section.id === 'skills' ? 'technologies' : section.id
+              break
+            }
+          }
+
+          if (currentSectionId !== activeSection) {
+            setActiveSection(currentSectionId)
+          }
+        }
+
+        ticking.current = false
+      })
     }
+  }, [scrolled, activeSection, sections])
 
-    window.addEventListener('scroll', handleActiveSectionUpdate)
-    handleActiveSectionUpdate() // Initial call to set active section on load
+  useEffect(() => {
+    // Initial check
+    handleScroll()
 
-    return () => window.removeEventListener('scroll', handleActiveSectionUpdate)
-  }, [navItems]) // Re-run if navItems change
+    // Add event listener
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
+  }, [handleScroll])
 
   return { scrolled, activeSection }
 }

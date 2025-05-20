@@ -1,79 +1,59 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import GlowText from './common/GlowText'
 
 const Preloader = ({ finishLoading }) => {
   const [progress, setProgress] = useState(0)
+  const requestRef = useRef(null)
+  const startTimeRef = useRef(null)
+  const animDuration = 2500 // Complete in 2.5 seconds
 
   useEffect(() => {
-    let interval
-    let timeout
+    const animate = timestamp => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp
+      const elapsed = timestamp - startTimeRef.current
 
-    // Simple counter from 0 to 100
-    const startCounter = () => {
-      let count = 0
-      interval = setInterval(() => {
-        count += 1
-        setProgress(count)
+      // Calculate progress as a percentage (0-100)
+      const nextProgress = Math.min(Math.floor((elapsed / animDuration) * 100), 100)
 
-        if (count >= 100) {
-          clearInterval(interval)
-          // Add a small delay at 100% before calling finishLoading
-          setTimeout(() => {
-            if (typeof finishLoading === 'function') {
-              finishLoading()
-            }
-          }, 800) // Longer delay to appreciate the completed animation
-        }
-      }, 30) // Increment every 30ms (takes ~3 seconds to reach 100%)
+      if (nextProgress !== progress) {
+        setProgress(nextProgress)
+      }
+
+      if (nextProgress < 100) {
+        requestRef.current = requestAnimationFrame(animate)
+      } else {
+        finishLoading?.()
+      }
     }
 
-    // Start counter immediately
-    startCounter()
-
-    // Failsafe: if anything goes wrong, finish loading after 5 seconds
-    timeout = setTimeout(() => {
-      if (typeof finishLoading === 'function') {
-        finishLoading()
-      }
-    }, 5000)
+    requestRef.current = requestAnimationFrame(animate)
 
     return () => {
-      clearInterval(interval)
-      clearTimeout(timeout)
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current)
+      }
     }
-  }, [finishLoading])
-
-  // Logo fill colors
-  const emptyColor = '#222222' // Dark gray/empty color
-  const fillColor = '#b026ff' // Neon purple/filled color
+  }, [finishLoading, progress])
 
   return (
-    <div className='fixed inset-0 bg-darker z-50 flex flex-col items-center justify-center overflow-hidden'>
-      {/* Background glow effect */}
-      <div
-        className='absolute inset-0 opacity-30'
-        style={{
-          background: `radial-gradient(circle at center, rgba(176, 38, 255, 0.15), transparent 70%)`,
-        }}
-      />
-
+    <div className='fixed inset-0 bg-darker z-50 flex flex-col items-center justify-center'>
       {/* Logo with fill effect */}
       <div className='mb-12 relative'>
-        {/* Base logo (empty/unfilled) */}
-        <div className='text-6xl md:text-8xl font-bold font-mono tracking-wider' style={{ color: emptyColor }}>
-          EM<span className='text-neon-pink'></span>
+        {/* Base logo */}
+        <div className='text-6xl md:text-8xl font-bold font-mono tracking-wider' style={{ color: '#222222' }}>
+          EM
         </div>
 
         {/* Filling logo overlay */}
         <div
           className='text-6xl md:text-8xl font-bold font-mono tracking-wider absolute top-0 left-0 overflow-hidden'
           style={{
-            color: fillColor,
+            color: '#b026ff',
             width: `${progress}%`,
-            transition: 'width 0.15s ease-out',
+            transition: 'width 0.1s linear',
             textShadow: `0 0 15px rgba(176, 38, 255, ${(progress / 100) * 0.8})`,
           }}>
-          EM<span className='text-neon-pink'></span>
+          EM
         </div>
       </div>
 
@@ -84,25 +64,12 @@ const Preloader = ({ finishLoading }) => {
 
       {/* Progress bar */}
       <div className='w-80 md:w-96 flex flex-col items-center'>
-        <div className='w-full h-2 bg-dark/80 rounded-full overflow-hidden mb-4 relative'>
+        <div className='w-full h-2 bg-dark/80 rounded-full overflow-hidden mb-4'>
           <div
             className='h-full bg-neon-purple'
             style={{
               width: `${progress}%`,
-              transition: 'width 0.15s ease-out',
-              boxShadow: `0 0 10px rgba(176, 38, 255, ${(progress / 100) * 0.8})`,
-            }}
-          />
-
-          {/* Glow overlay for progress bar */}
-          <div
-            className='absolute top-0 left-0 h-full pointer-events-none'
-            style={{
-              width: `${progress}%`,
-              background: 'linear-gradient(90deg, transparent, rgba(176, 38, 255, 0.6))',
-              filter: 'blur(4px)',
-              opacity: 0.6,
-              transition: 'width 0.15s ease-out',
+              transition: 'width 0.1s linear',
             }}
           />
         </div>

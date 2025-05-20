@@ -1,61 +1,37 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * Custom hook for handling all animations in the Technologies section
- * @returns {Object} References and animation functions
+ * Custom hook for minimal but effective animations in the Technologies section
  */
-const useTechAnimations = technologies => {
+const useTechAnimations = () => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
   const containerRef = useRef(null)
   const arrowRef = useRef(null)
-  const techRefs = useRef([])
-
-  // Setup refs for each tech item
-  useEffect(() => {
-    techRefs.current = Array(technologies.reduce((total, tech) => total + tech.items.length, 0))
-      .fill()
-      .map(() => React.createRef())
-  }, [technologies])
 
   useEffect(() => {
-    // Title animation
-    gsap.fromTo(
-      titleRef.current,
-      { y: 20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 80%',
-        },
-      }
-    )
+    // Create a single timeline for better performance
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: titleRef.current,
+        start: 'top 80%',
+      },
+    })
 
-    // Container animation
-    gsap.fromTo(
+    // Add animations to timeline
+    tl.fromTo(titleRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }).fromTo(
       containerRef.current,
       { y: 20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        delay: 0.1,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-      }
+      { y: 0, opacity: 1, duration: 0.5 },
+      '-=0.3' // Slight overlap for better visual effect
     )
 
-    // Arrow bounce animation
-    gsap.to(arrowRef.current, {
+    // Simple arrow animation
+    const arrowAnim = gsap.to(arrowRef.current, {
       y: 10,
       duration: 1.5,
       repeat: -1,
@@ -63,91 +39,54 @@ const useTechAnimations = technologies => {
       ease: 'sine.inOut',
     })
 
-    // Setup intersection observer for tech cards with staggered reveal
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2,
-    }
-
-    const handleIntersection = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target
-          const delay = parseInt(element.dataset.index) * 0.1
-
-          // Apply animations with staggered delay
-          gsap.fromTo(
-            element,
-            {
-              y: 20,
-              opacity: 0,
-              scale: 0.95,
-              rotate: -2,
-            },
-            {
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              rotate: 0,
-              duration: 0.6,
-              delay: delay,
-              ease: 'power3.out',
-              onComplete: () => {
-                // Add a subtle pulse effect to make it more interesting
-                gsap.to(element, {
-                  boxShadow: '0 0 20px rgba(176, 38, 255, 0.4)',
-                  duration: 1.5,
-                  repeat: 1,
-                  yoyo: true,
-                })
-              },
+    // Use intersection observer API directly - more efficient than individual animations
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const element = entry.target
+              gsap.to(element, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.5,
+                ease: 'power2.out',
+                clearProps: 'transform', // Clean up after animation
+              })
+              observer.unobserve(element)
             }
-          )
+          })
+        },
+        { threshold: 0.2 }
+      )
 
-          // Stop observing once animated
-          observer.unobserve(element)
-        }
+      // Apply initial styles and observe
+      document.querySelectorAll('.tech-card').forEach((card, index) => {
+        gsap.set(card, { opacity: 0, y: 20, scale: 0.95 })
+        observer.observe(card)
       })
+
+      return () => {
+        // Clean up
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+        tl.kill()
+        arrowAnim.kill()
+        document.querySelectorAll('.tech-card').forEach(card => observer.unobserve(card))
+      }
     }
-
-    const observer = new IntersectionObserver(handleIntersection, observerOptions)
-
-    // Start observing each tech card
-    const techCards = document.querySelectorAll('.tech-card')
-    techCards.forEach(card => observer.observe(card))
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-      techCards.forEach(card => observer.unobserve(card))
+      tl.kill()
+      arrowAnim.kill()
     }
   }, [])
 
-  // Handle arrow click to scroll to next section
+  // Simple scroll function
   const scrollToNext = () => {
     const contact = document.getElementById('contact')
-    if (contact) {
-      // Create a flashy arrow animation before scrolling
-      gsap
-        .timeline()
-        .to(arrowRef.current, {
-          y: -10,
-          scale: 1.2,
-          opacity: 0.8,
-          duration: 0.2,
-          ease: 'power2.in',
-        })
-        .to(arrowRef.current, {
-          y: 30,
-          scale: 0.5,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.out',
-          onComplete: () => {
-            contact.scrollIntoView({ behavior: 'smooth' })
-          },
-        })
-    }
+    contact?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return {
@@ -155,7 +94,6 @@ const useTechAnimations = technologies => {
     titleRef,
     containerRef,
     arrowRef,
-    techRefs,
     scrollToNext,
   }
 }
