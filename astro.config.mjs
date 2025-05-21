@@ -4,13 +4,17 @@ import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 
 import react from '@astrojs/react'
-import node from '@astrojs/node'
+import netlify from '@astrojs/netlify'
 
 // Environment detection
 const isProduction = process.env.NODE_ENV === 'production'
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server', // Enable server-side rendering mode
+  adapter: netlify({
+    edgeMiddleware: true, // Enable Edge Functions for better performance
+  }),
   vite: {
     plugins: [tailwindcss()],
     build: {
@@ -48,11 +52,6 @@ export default defineConfig({
       include: ['src/components/**/*.jsx', 'src/components/**/*.tsx'],
     }),
   ],
-
-  output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
 
   server: {
     headers: {

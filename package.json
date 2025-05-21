@@ -10,6 +10,7 @@
     "test:email": "node test-email.js"
   },
   "dependencies": {
+    "@astrojs/netlify": "^6.3.3",
     "@astrojs/node": "^9.2.1",
     "@astrojs/react": "^4.2.7",
     "@react-email/components": "^0.0.41",
