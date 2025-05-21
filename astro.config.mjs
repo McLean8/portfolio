@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 
 import react from '@astrojs/react'
+import node from '@astrojs/node'
 
 // Environment detection
 const isProduction = process.env.NODE_ENV === 'production'
@@ -48,7 +49,10 @@ export default defineConfig({
     }),
   ],
 
-  output: 'static', // Static output for best performance
+  output: 'server',
+  adapter: node({
+    mode: 'standalone',
+  }),
 
   server: {
     headers: {
