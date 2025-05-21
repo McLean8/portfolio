@@ -32,26 +32,25 @@ const MobileNav = ({ navItems, activeSection, darkMode, toggleTheme, isMenuOpen,
             </div>
           </div>
           <span className='sr-only'>{darkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
-          <span
-            className='absolute right-0 top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-light/70 whitespace-nowrap px-2 py-1 rounded'
-            style={{
-              backgroundColor: !darkMode ? 'rgba(128, 13, 191, 0.2)' : 'rgba(5, 5, 5, 0.8)',
-            }}>
-            {darkMode ? 'Light Mode' : 'Dark Mode'}
-          </span>
         </button>
 
-        {/* Menu Toggle Button */}
-        <button className='flex items-center justify-center w-10 h-10 rounded-md bg-darker/40 border border-neon-purple/20 backdrop-blur-md outline-none hover:bg-darker/60 transition-colors duration-300' onClick={toggleMenu} aria-label='Toggle menu'>
-          <div className='w-5 h-5 relative'>
-            <span className={`absolute block w-5 h-0.5 bg-light transition-all duration-300 ${isMenuOpen ? 'top-2 rotate-45' : 'top-0.5'}`}></span>
-            <span className={`absolute block w-5 h-0.5 bg-light transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'top-2'}`}></span>
-            <span className={`absolute block w-5 h-0.5 bg-light transition-all duration-300 ${isMenuOpen ? 'top-2 -rotate-45' : 'top-3.5'}`}></span>
+        {/* Mobile Menu Button */}
+        <button onClick={toggleMenu} className='flex items-center justify-center transition-all duration-300 focus:outline-none' aria-label='Toggle menu' aria-expanded={isMenuOpen}>
+          <div className='relative w-10 h-10 flex items-center justify-center'>
+            <div className={`absolute transition-all duration-300 transform ${isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'}`}>
+              <div className='w-6 h-0.5 bg-light/90'></div>
+            </div>
+            <div className={`absolute transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
+              <div className='w-6 h-0.5 bg-light/90'></div>
+            </div>
+            <div className={`absolute transition-all duration-300 transform ${isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'}`}>
+              <div className='w-6 h-0.5 bg-light/90'></div>
+            </div>
           </div>
         </button>
       </div>
 
-      {/* Mobile Navigation Menu (Flyout) */}
+      {/* Mobile Menu */}
       <div
         className={`md:hidden fixed top-[65px] left-3 right-3 bg-darker/90 backdrop-blur-lg rounded-2xl border border-neon-purple/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ease-in-out overflow-hidden 
           ${isMenuOpen ? 'max-h-[400px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'}

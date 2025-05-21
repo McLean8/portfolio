@@ -72,9 +72,8 @@ npm run preview
 
 <div align="center">
   
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mclean25)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourprofile)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/yourhandle)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/McLean8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ethan-otermin-mclean/)
   
 </div>
 
@@ -85,9 +84,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by McLean</sub>
+  <sub>Built with ❤️ by Ethan McLean</sub>
 </div>
-
-# Contact Form Setup
-
-The portfolio includes a contact form powered by [Resend](https://resend.com). For setup instructions, see [CONTACT_SETUP.md](./CONTACT_SETUP.md).

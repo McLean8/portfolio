@@ -16,7 +16,7 @@ const DesktopNav = ({ navItems, activeSection, darkMode, toggleTheme, handleNavI
           className={`nav-link relative text-xl font-medium transition-all duration-300 outline-none
             ${activeSection === item.name.toLowerCase() || (item.name === 'Technologies' && activeSection === 'technologies') ? 'text-neon-purple text-shadow-md' : 'text-light/90 hover:text-white'}
           `}>
-          <span className='transition-all duration-300 hover:text-shadow-md'>
+          <span className='transition-all duration-300'>
             <GlowText text={item.name} intensity={clickedItems[item.name] ? 'strong' : 'white'} className={clickedItems[item.name] ? 'text-neon-purple animate-pulse' : 'text-white'} />
           </span>
         </a>

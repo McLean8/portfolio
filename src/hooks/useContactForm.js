@@ -24,14 +24,16 @@ const useContactForm = () => {
     setFormError(null)
 
     try {
-      const formData = new FormData()
-      formData.append('name', formState.name)
-      formData.append('email', formState.email)
-      formData.append('message', formState.message)
-
       const response = await fetch('/api/contact', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+        }),
       })
 
       // Handle non-JSON or invalid JSON responses
