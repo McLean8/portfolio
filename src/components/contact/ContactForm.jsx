@@ -5,7 +5,7 @@ import FormInput from './FormInput'
 const ContactForm = ({ formState, handleChange, handleSubmit, formSubmitted, formSubmitting, formError }) => {
   if (formSubmitted) {
     return (
-      <div className='w-full flex justify-center'>
+      <div className='w-full flex items-center justify-center'>
         <SuccessMessage />
       </div>
     )
