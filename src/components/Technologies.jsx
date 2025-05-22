@@ -1,6 +1,5 @@
 import React from 'react'
 import useTechAnimations from '../hooks/useTechAnimations'
-import ScrollArrow from './common/ScrollArrow'
 
 // Import components and data directly
 import TechCategory from './technologies/TechCategory'
@@ -28,9 +27,6 @@ const Technologies = () => {
           </div>
         </div>
       </div>
-
-      {/* Scroll down arrow */}
-      <ScrollArrow arrowRef={arrowRef} onClick={scrollToNext} direction='down' />
     </section>
   )
 }

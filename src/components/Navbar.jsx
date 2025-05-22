@@ -56,7 +56,7 @@ const Navbar = () => {
                   target={item.type === 'pdf' ? '_blank' : undefined}
                   rel={item.type === 'pdf' ? 'noopener noreferrer' : undefined}
                   onClick={() => handleNavItemClick(item.name)}
-                  className={`nav-link text-sm md:text-base font-medium transition-all duration-300 px-2 md:px-3
+                  className={`nav-link text-base md:text-lg font-medium transition-all duration-300 px-2 md:px-3
                     ${activeSection === item.name.toLowerCase() || (item.name === 'Technologies' && activeSection === 'technologies') ? 'text-neon-purple text-shadow-md' : 'text-light/90 hover:text-white'}
                   `}>
                   <GlowText text={item.name} intensity={clickedItems[item.name] ? 'strong' : 'white'} className={clickedItems[item.name] ? 'text-neon-purple animate-pulse' : 'text-white'} />

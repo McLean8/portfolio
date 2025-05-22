@@ -7,7 +7,6 @@ import useKeywordHighlight from '../hooks/useKeywordHighlight'
 
 // Import component parts directly
 import CodeEditorIllustration from './about/CodeEditorIllustration'
-import ScrollArrow from './common/ScrollArrow'
 import AboutContent from './about/AboutContent'
 
 const About = () => {
@@ -49,9 +48,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      {/* Scroll down arrow */}
-      <ScrollArrow arrowRef={arrowRef} onClick={scrollToNext} />
     </section>
   )
 }
