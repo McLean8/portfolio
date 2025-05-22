@@ -5,7 +5,6 @@ import useContactAnimations from '../hooks/useContactAnimations'
 import ContactForm from './contact/ContactForm'
 import SocialLinks from './contact/SocialLinks'
 import ScrollToTopButton from './common/ScrollToTopButton'
-import BackgroundParticles from './common/BackgroundParticles'
 
 const Contact = () => {
   const { sectionRef, titleRef, formRef } = useContactAnimations()
@@ -13,8 +12,6 @@ const Contact = () => {
 
   return (
     <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-darker relative overflow-hidden w-full'>
-      <BackgroundParticles />
-
       <div className='container'>
         <div className='flex flex-col gap-8 md:gap-12 w-full'>
           {/* Section header with number */}

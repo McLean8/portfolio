@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import GlobalParticleCanvas from '../components/common/GlobalParticleCanvas';
 const { title } = Astro.props;
 ---
 <!doctype html>
@@ -25,6 +26,7 @@ const { title } = Astro.props;
 		</script>
 	</head>
 	<body>
+		<GlobalParticleCanvas client:only="react" />
 		<slot />
 	</body>
 </html>

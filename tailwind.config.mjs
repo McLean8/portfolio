@@ -34,8 +34,10 @@ export default {
         'spin-slow': 'spin 12s linear infinite',
         'reverse-spin': 'reverse-spin 10s linear infinite',
         float: 'float 6s ease-in-out infinite',
-        'float-delay': 'float 8s ease-in-out infinite',
-        'float-slow': 'float 10s ease-in-out infinite',
+        'float-delayed': 'float 8s ease-in-out 1s infinite',
+        'float-slow': 'float 10s ease-in-out 2s infinite',
+        'float-reverse': 'float-reverse 7s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.5s ease-in-out',
       },
       keyframes: {
         'reverse-spin': {
@@ -53,6 +55,18 @@ export default {
           '50%': {
             transform: 'translateY(-10px)',
           },
+        },
+        'float-reverse': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(10px)',
+          },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       backgroundImage: {
