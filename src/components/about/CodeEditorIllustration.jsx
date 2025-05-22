@@ -68,7 +68,7 @@ const CodeEditorIllustration = () => {
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'} pl-12`}>{`<`}</span>
             <span className={`${darkMode ? 'text-red-500' : 'text-red-600'}`}>p</span>
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{`>`}</span>
-            <span className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Beautiful&nbsp;Interfaces</span>
+            <span className='text-neon-purple'>Beautiful&nbsp;Interfaces</span>
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{`</`}</span>
             <span className={`${darkMode ? 'text-red-500' : 'text-red-600'}`}>p</span>
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{`>`}</span>
@@ -78,7 +78,7 @@ const CodeEditorIllustration = () => {
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'} pl-12`}>{`<`}</span>
             <span className={`${darkMode ? 'text-red-500' : 'text-red-600'}`}>p</span>
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{`>`}</span>
-            <span className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Responsive&nbsp;Design</span>
+            <span className='text-neon-purple'>Responsive&nbsp;Design</span>
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{`</`}</span>
             <span className={`${darkMode ? 'text-red-500' : 'text-red-600'}`}>p</span>
             <span className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{`>`}</span>
