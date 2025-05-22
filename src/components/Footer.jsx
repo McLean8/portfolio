@@ -64,9 +64,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      {/* Background effect */}
-      {darkMode && <div className='absolute bottom-0 left-0 w-full h-10 bg-gradient-to-r from-neon-purple/20 via-neon-pink/20 to-neon-purple/20 animate-pulse-slow'></div>}
     </footer>
   )
 }
