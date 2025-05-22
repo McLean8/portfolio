@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import GlowText from './common/GlowText'
+import useThemeManager from '../hooks/useThemeManager'
 
 const Footer = () => {
   const footerRef = useRef(null)
+  const { darkMode } = useThemeManager()
 
   useEffect(() => {
     const element = footerRef.current
@@ -64,8 +66,8 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Animated background effect */}
-      <div className='absolute bottom-0 left-0 w-full h-10 bg-gradient-to-r from-neon-purple/20 via-neon-pink/20 to-neon-purple/20 animate-pulse-slow'></div>
+      {/* Animated background effect - only shown in dark mode */}
+      {darkMode && <div className='absolute bottom-0 left-0 w-full h-10 bg-gradient-to-r from-neon-purple/20 via-neon-pink/20 to-neon-purple/20 animate-pulse-slow'></div>}
     </footer>
   )
 }

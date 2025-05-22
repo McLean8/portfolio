@@ -12,8 +12,8 @@ const Hero = () => {
       {/* Animated particle background */}
       <ParticleCanvas canvasRef={canvasRef} />
 
-      {/* Background gradient overlay */}
-      <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-darker to-dark/70 -z-5'></div>
+      {/* Background overlay that respects theme */}
+      <div className='absolute top-0 left-0 w-full h-full bg-darker -z-5'></div>
 
       {/* Main content */}
       <HeroContent titleRef={titleRef} subtitleRef={subtitleRef} />
