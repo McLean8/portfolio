@@ -32,19 +32,19 @@ const FormInput = ({ id, label, type, value, onChange, placeholder, required, ro
     onChange: handleChange,
     onBlur: handleBlur,
     required,
-    className: `w-full py-2 px-0 bg-transparent focus:outline-none ${error && touched ? 'border-red-500' : ''}`,
+    className: `w-full py-3 px-0 bg-transparent focus:outline-none text-base transition-all duration-300 ${error && touched ? 'border-red-500' : ''}`,
     placeholder,
   }
 
   return (
-    <div>
-      <label htmlFor={id} className='text-xl text-light flex mb-4' style={{ border: 'none' }}>
+    <div className='w-full'>
+      <label htmlFor={id} className='text-base sm:text-lg text-light flex mb-2 md:mb-3' style={{ border: 'none' }}>
         {label} {required && <span className='text-neon-purple ml-1'>*</span>}
       </label>
 
-      {type === 'textarea' ? <textarea {...commonProps} rows={rows || 5} className={`${commonProps.className} resize-none`} /> : <input {...commonProps} type={type} />}
+      {type === 'textarea' ? <textarea {...commonProps} rows={rows || 5} className={`${commonProps.className} resize-none min-h-[120px] w-full`} /> : <input {...commonProps} type={type} className={`${commonProps.className} w-full`} />}
 
-      {error && touched && <p className='text-red-500 text-sm mt-1'>{error}</p>}
+      {error && touched && <p className='text-red-500 text-sm mt-2'>{error}</p>}
     </div>
   )
 }

@@ -9,10 +9,6 @@
 
 </div>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mclean25/images/main/portfoliobanner.png" alt="Portfolio Banner" width="800px" style="border-radius: 10px; margin: 20px 0;" />
-</p>
-
 ## 🚀 About
 
 Welcome to my portfolio repository! This site showcases my projects, skills, and experiences as a developer. Built with modern web technologies, it represents both my technical abilities and creative vision.
@@ -29,7 +25,6 @@ Welcome to my portfolio repository! This site showcases my projects, skills, and
 - 📱 Fully responsive design
 - 🎨 Modern and clean UI
 - 🚀 Fast performance with Astro
-- 🧰 Showcase of projects and skills
 - 📝 Blog section to share knowledge
 - 📬 Contact form for inquiries
 
@@ -53,19 +48,6 @@ npm run build
 
 # Preview production build
 npm run preview
-```
-
-## 📚 Project Structure
-
-```
-/
-├── public/          # Static assets
-├── src/
-│   ├── components/  # UI components
-│   ├── layouts/     # Page layouts
-│   ├── pages/       # Page routes and templates
-│   └── styles/      # Global styles
-└── package.json     # Project dependencies
 ```
 
 ## 📞 Connect With Me

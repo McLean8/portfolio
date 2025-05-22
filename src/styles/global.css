@@ -35,6 +35,10 @@ body {
   color: var(--light);
   overflow-x: hidden;
   text-shadow: 0 0 2px var(--neon-purple-subtle); /* Global subtle glow for all text */
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* Light mode overrides */
@@ -255,9 +259,22 @@ html.light-mode .glow-white .glow-char {
 
 /* Utility classes */
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 /* Custom focus styles */
@@ -456,6 +473,40 @@ html.light-mode select:focus {
   }
 }
 
+@keyframes floatParticle4 {
+  0% {
+    transform: translate(60%, 10%);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translate(20%, 40%);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translate(70%, 70%);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(60%, 10%);
+    opacity: 0.5;
+  }
+}
+
+@keyframes floatParticle5 {
+  0% {
+    transform: translate(40%, 30%);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(75%, 60%);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(40%, 30%);
+    opacity: 0.6;
+  }
+}
+
 .particle-1 {
   animation: floatParticle1 18s ease-in-out infinite;
   left: 15%;
@@ -472,6 +523,26 @@ html.light-mode select:focus {
   animation: floatParticle3 20s ease-in-out infinite;
   left: 60%;
   top: 60%;
+}
+
+.particle-4 {
+  animation: floatParticle4 22s ease-in-out infinite;
+  right: 40%;
+  top: 20%;
+}
+
+.particle-5 {
+  animation: floatParticle5 26s ease-in-out infinite;
+  left: 30%;
+  bottom: 40%;
+}
+
+/* Additional responsive styles for contact section */
+@media (min-width: 1024px) {
+  #contact input,
+  #contact textarea {
+    font-size: 1.125rem;
+  }
 }
 
 /* Form styling for better visibility - with increased specificity */
@@ -653,4 +724,55 @@ html.light-mode .from-neon-purple\/30 {
 
 html.light-mode .to-darker {
   --tw-gradient-to: var(--darker);
+}
+
+/* Responsive fixes */
+section {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure flex layouts work properly */
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+/* Ensure grid layouts are responsive */
+.grid {
+  display: grid;
+  width: 100%;
+}
+
+/* Contact section specific styles */
+#contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contact .container {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  #contact form {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  #contact .container {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  #contact .container {
+    max-width: 85%;
+  }
 }

@@ -12,11 +12,11 @@ const Contact = () => {
   const { formState, handleChange, handleSubmit, formSubmitted, formSubmitting, formError } = useContactForm()
 
   return (
-    <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-40 bg-darker relative overflow-hidden'>
+    <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-darker relative overflow-hidden w-full'>
       <BackgroundParticles />
 
-      <div className='container mx-auto px-6 md:px-12 max-w-3xl relative z-10'>
-        <div className='flex flex-col gap-16'>
+      <div className='container'>
+        <div className='flex flex-col gap-8 md:gap-12 w-full'>
           {/* Section header with number */}
           <h2 ref={titleRef} className='flex items-center font-mono text-xl md:text-2xl text-neon-purple mb-2'>
             <span className='font-semibold'>
@@ -26,13 +26,15 @@ const Contact = () => {
           </h2>
 
           {/* Form */}
-          <div ref={formRef}>
+          <div ref={formRef} className='w-full'>
             <ContactForm formState={formState} handleChange={handleChange} handleSubmit={handleSubmit} formSubmitted={formSubmitted} formSubmitting={formSubmitting} formError={formError} />
           </div>
+
+          {/* Social links */}
+          <SocialLinks />
         </div>
       </div>
 
-      <SocialLinks />
       <ScrollToTopButton />
     </section>
   )

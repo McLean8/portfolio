@@ -11,17 +11,17 @@ const Technologies = () => {
   const { sectionRef, titleRef, containerRef, arrowRef, scrollToNext } = useTechAnimations(technologies)
 
   return (
-    <section id='skills' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-24 bg-dark relative'>
+    <section id='skills' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-dark relative w-full'>
       {/* Page transition overlay */}
       <div className='page-transition-overlay fixed inset-0 bg-gradient-to-b from-neon-purple/30 to-darker pointer-events-none z-50 opacity-0 transform translate-y-full'></div>
 
-      <div className='container mx-auto px-4 md:px-12 max-w-5xl'>
-        <div className='flex flex-col gap-12'>
+      <div className='container'>
+        <div className='flex flex-col gap-8 md:gap-12 w-full'>
           {/* Section header */}
           <SectionHeader title='Technologies' titleRef={titleRef} />
 
           {/* Tech stack container */}
-          <div ref={containerRef} className='grid gap-12'>
+          <div ref={containerRef} className='grid gap-8 md:gap-12 w-full'>
             {technologies.map((techGroup, groupIndex) => (
               <TechCategory key={groupIndex} category={techGroup.category} items={techGroup.items} startIndex={groupIndex * 10} />
             ))}

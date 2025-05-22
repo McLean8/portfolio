@@ -45,20 +45,20 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer ref={footerRef} className='bg-darker py-8 relative overflow-hidden'>
-      <div className='container mx-auto px-6'>
-        <div className='flex flex-col md:flex-row justify-between items-center'>
-          <div className='mb-6 md:mb-0'>
+    <footer ref={footerRef} className='bg-darker py-8 relative overflow-hidden w-full'>
+      <div className='container'>
+        <div className='flex flex-col md:flex-row justify-between items-center w-full'>
+          <div className='mb-6 md:mb-0 md:w-1/4'>
             <span className='text-2xl md:text-3xl font-bold tracking-tight text-neon-purple group-hover:text-neon-pink transition-colors duration-300'>
               <GlowText text='EM' intensity='strong' />
             </span>
           </div>
 
-          <div className='mb-6 md:mb-0 text-center'>
+          <div className='mb-6 md:mb-0 md:w-2/4 text-center'>
             <p className='text-light/60 text-sm hover:text-light/80 transition-colors duration-300 ease-in-out'>&copy; {currentYear} Ethan McLean. All rights reserved.</p>
           </div>
 
-          <div className='mb-6 md:mb-0'>
+          <div className='mb-6 md:mb-0 md:w-1/4 md:text-right'>
             <p className='text-light/60 text-sm hover:text-light/80 transition-colors duration-300 ease-in-out'>Projects coming soon...</p>
           </div>
         </div>
