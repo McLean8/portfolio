@@ -18,7 +18,7 @@ const Contact = () => {
       <div className='container'>
         <div className='flex flex-col gap-8 md:gap-12 w-full'>
           {/* Section header with number */}
-          <h2 ref={titleRef} className='flex items-center font-mono text-xl md:text-2xl text-neon-purple mb-2'>
+          <h2 ref={titleRef} className='flex items-center font-mono text-2xl md:text-3xl lg:text-4xl text-neon-purple mb-2'>
             <span className='font-semibold'>
               <GlowText text='Contact Me' intensity='strong' />
             </span>
