@@ -6,7 +6,7 @@ const CodeEditorIllustration = () => {
 
   return (
     <div className='relative max-w-xs border-2 border-neon-purple/30 rounded-md overflow-hidden'>
-      {/* Main container with proper background color based on theme */}
+      {/* Main container */}
       <div className={`p-6 w-full min-h-[400px] flex flex-col`}>
         {/* Code editor header */}
         <div className='flex items-center mb-4'>
@@ -133,7 +133,7 @@ const CodeEditorIllustration = () => {
         <div className='h-4 w-2 bg-neon-purple/70 animate-pulse absolute top-[205px] left-[143px]'></div>
       </div>
 
-      {/* Overlay effect - make it theme-dependent */}
+      {/* Overlay effect */}
       <div className={`absolute inset-0 ${darkMode ? 'bg-gradient-to-br from-transparent to-darker/30' : 'bg-gradient-to-br from-transparent to-white/10'} pointer-events-none`}></div>
     </div>
   )

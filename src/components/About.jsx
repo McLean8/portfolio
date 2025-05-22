@@ -1,11 +1,11 @@
 import { useRef } from 'react'
 import GlowText from './common/GlowText'
 
-// Import custom hooks
+// Hooks
 import useElementAnimations from '../hooks/useElementAnimations'
 import useKeywordHighlight from '../hooks/useKeywordHighlight'
 
-// Import component parts directly
+// Components
 import CodeEditorIllustration from './about/CodeEditorIllustration'
 import AboutContent from './about/AboutContent'
 
@@ -18,7 +18,7 @@ const About = () => {
     <section id='about' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-dark relative w-full'>
       <div className='container'>
         <div className='flex flex-col gap-6 md:gap-8 w-full'>
-          {/* Section header with number */}
+          {/* Section header */}
           <h2 ref={titleRef} className='flex items-center font-mono text-2xl md:text-3xl lg:text-4xl text-neon-purple mb-2'>
             <span className='font-semibold'>
               <GlowText text='About Me' intensity='strong' />
@@ -30,7 +30,7 @@ const About = () => {
             {/* Content */}
             <AboutContent contentRef={contentRef} paragraphRef={paragraphRef} highlightStyle={highlightStyle} highlightedWords={highlightedWords} />
 
-            {/* Image container - Only shown on lg screens and larger */}
+            {/* Image container */}
             <div ref={imgRef} className='md:col-span-5 order-1 md:order-2 hidden lg:flex lg:justify-center lg:items-center'>
               <div className='relative group'>
                 <div className='absolute -inset-1.5 bg-neon-purple/20 rounded-md blur opacity-20 group-hover:opacity-30 transition duration-500'></div>

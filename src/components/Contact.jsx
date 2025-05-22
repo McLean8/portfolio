@@ -14,7 +14,7 @@ const Contact = () => {
     <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-dark relative w-full'>
       <div className='container'>
         <div className='flex flex-col gap-8 md:gap-12 w-full'>
-          {/* Section header with number */}
+          {/* Section header */}
           <h2 ref={titleRef} className='flex items-center font-mono text-2xl md:text-3xl lg:text-4xl text-neon-purple mb-2'>
             <span className='font-semibold'>
               <GlowText text='Contact Me' intensity='strong' />
@@ -30,7 +30,7 @@ const Contact = () => {
           {/* Social links */}
           <SocialLinks />
 
-          {/* Scroll to top button - moved inside the flex container */}
+          {/* Scroll to top button */}
           <div className='relative w-full mt-8'>
             <ScrollToTopButton />
           </div>

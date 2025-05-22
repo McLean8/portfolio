@@ -11,10 +11,10 @@ const GlobalParticleCanvas = () => {
     const ctx = canvas.getContext('2d', { alpha: true })
     let particles = []
 
-    // Helper function to calculate particle count based on screen size
+    // Particle count calculation
     const getParticleCount = () => Math.min(Math.floor(window.innerWidth * 0.08), 100)
 
-    // Optimize by defining particle class outside render function
+    // Particle class
     class Particle {
       constructor() {
         this.reset()
@@ -27,7 +27,7 @@ const GlobalParticleCanvas = () => {
         this.speedX = Math.random() * 0.5 - 0.25
         this.speedY = Math.random() * 0.5 - 0.25
 
-        // Optimize color creation
+        // Color creation
         const isPurple = Math.random() > 0.4
         const purpleValue = Math.random() * 155 + 100
         const r = isPurple ? purpleValue : 255
@@ -42,7 +42,7 @@ const GlobalParticleCanvas = () => {
         this.x += this.speedX
         this.y += this.speedY
 
-        // Handle edge cases
+        // Edge handling
         if (this.x > canvas.width) this.x = 0
         else if (this.x < 0) this.x = canvas.width
         if (this.y > canvas.height) this.y = 0
@@ -60,18 +60,18 @@ const GlobalParticleCanvas = () => {
     const resizeCanvas = () => {
       const { innerWidth, innerHeight, devicePixelRatio = 1 } = window
 
-      // Set canvas size with device pixel ratio for sharper rendering
+      // Canvas sizing
       canvas.width = innerWidth * devicePixelRatio
       canvas.height = innerHeight * devicePixelRatio
 
-      // Scale context to counter the pixel ratio scaling
+      // Context scaling
       ctx.scale(devicePixelRatio, devicePixelRatio)
 
-      // Set display size
+      // Display size
       canvas.style.width = `${innerWidth}px`
       canvas.style.height = `${innerHeight}px`
 
-      // Reinitialize particles for new dimensions
+      // Initialize particles
       initParticles()
     }
 
@@ -85,11 +85,11 @@ const GlobalParticleCanvas = () => {
     }
 
     const animate = () => {
-      // Use a semi-transparent rect for trail effect instead of clearing
+      // Trail effect
       ctx.fillStyle = 'rgba(5, 5, 5, 0.03)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Update and draw all particles
+      // Update and draw particles
       for (const particle of particles) {
         particle.update()
         particle.draw()
@@ -98,14 +98,14 @@ const GlobalParticleCanvas = () => {
       animationIdRef.current = requestAnimationFrame(animate)
     }
 
-    // Set up resize listener
+    // Resize handling
     window.addEventListener('resize', resizeCanvas, false)
 
-    // Initial setup
+    // Setup
     resizeCanvas()
     animationIdRef.current = requestAnimationFrame(animate)
 
-    // Cleanup function
+    // Cleanup
     return () => {
       window.removeEventListener('resize', resizeCanvas)
       if (animationIdRef.current) {
@@ -117,5 +117,5 @@ const GlobalParticleCanvas = () => {
   return <canvas ref={canvasRef} className='fixed top-0 left-0 w-full h-full -z-10 pointer-events-none' style={{ opacity: 0.7 }} />
 }
 
-// Use memo to prevent unnecessary re-renders
+// Memoize component
 export default memo(GlobalParticleCanvas)

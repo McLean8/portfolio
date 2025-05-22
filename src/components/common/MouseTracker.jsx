@@ -7,16 +7,16 @@ const MouseTracker = () => {
   const isMoving = useRef(false)
 
   useEffect(() => {
-    // Track mouse position without triggering state updates
+    // Track mouse position
     const handleMouseMove = e => {
       positionRef.current = { x: e.clientX, y: e.clientY }
       isMoving.current = true
     }
 
-    // Update state only in animation frame for smooth performance
+    // Update state in animation frame
     const animateGradient = () => {
       if (isMoving.current) {
-        // Only update state if position has changed significantly
+        // Check for significant movement
         const dx = Math.abs(positionRef.current.x - position.x)
         const dy = Math.abs(positionRef.current.y - position.y)
 
@@ -37,7 +37,6 @@ const MouseTracker = () => {
     }
   }, [position])
 
-  // Apply style directly to avoid unnecessary DOM manipulation
   return (
     <div
       className='pointer-events-none fixed inset-0 z-30'

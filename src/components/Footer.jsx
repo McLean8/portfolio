@@ -9,15 +9,15 @@ const Footer = () => {
 
   useEffect(() => {
     const element = footerRef.current
-    let tween // To store the GSAP animation instance for cleanup
+    let tween
 
-    // Import ScrollTrigger only on the client side
+    // Import ScrollTrigger
     import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-      // Register ScrollTrigger plugin
+      // Register plugin
       gsap.registerPlugin(ScrollTrigger)
 
       if (element) {
-        // Footer animation
+        // Animation
         tween = gsap.fromTo(
           element,
           { y: 50, opacity: 0 },
@@ -27,27 +27,26 @@ const Footer = () => {
             duration: 0.8,
             scrollTrigger: {
               trigger: element,
-              start: 'top bottom-=30px', // Trigger when top of footer is 30px from viewport bottom
-              once: true, // Animate only once when it enters the viewport
-              // For your local debugging, you can add: markers: true,
+              start: 'top bottom-=30px',
+              once: true,
             },
           }
         )
       }
     })
 
-    // Cleanup function for GSAP animation and ScrollTrigger
+    // Cleanup
     return () => {
       if (tween) {
-        tween.kill() // This kills the animation and its associated ScrollTrigger
+        tween.kill()
       }
     }
-  }, []) // Empty dependency array ensures this runs once on mount and cleans up on unmount
+  }, [])
 
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer ref={footerRef} className='bg-darker py-8 relative overflow-hidden w-full'>
+    <footer ref={footerRef} className={`${darkMode ? 'bg-darker' : 'bg-white'} py-8 relative overflow-hidden w-full`}>
       <div className='container'>
         <div className='flex flex-col md:flex-row justify-between items-center w-full'>
           <div className='mb-6 md:mb-0 md:w-1/4'>
@@ -66,7 +65,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Animated background effect - only shown in dark mode */}
+      {/* Background effect */}
       {darkMode && <div className='absolute bottom-0 left-0 w-full h-10 bg-gradient-to-r from-neon-purple/20 via-neon-pink/20 to-neon-purple/20 animate-pulse-slow'></div>}
     </footer>
   )

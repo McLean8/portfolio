@@ -9,13 +9,13 @@ const Hero = () => {
 
   return (
     <section ref={heroRef} id='home' className='relative min-h-screen flex items-center justify-center overflow-hidden'>
-      {/* Animated particle background */}
+      {/* Particle background */}
       <ParticleCanvas canvasRef={canvasRef} />
 
-      {/* Background overlay that respects theme */}
+      {/* Background overlay */}
       <div className='absolute top-0 left-0 w-full h-full bg-darker -z-5'></div>
 
-      {/* Main content */}
+      {/* Content */}
       <HeroContent titleRef={titleRef} subtitleRef={subtitleRef} />
 
       {/* Scroll button */}

@@ -20,12 +20,12 @@ const Navbar = () => {
   const { scrolled, activeSection } = useNavScroll(navItems)
 
   useEffect(() => {
-    // Animation for navbar elements - simplified for better performance
+    // Animation for navbar elements
     gsap.fromTo('.nav-link', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1 })
     gsap.fromTo('.logo', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.8 })
   }, [])
 
-  // Function to handle nav item clicks
+  // Handle nav item clicks
   const handleNavItemClick = itemName => {
     setClickedItems(prev => ({ ...prev, [itemName]: true }))
 
@@ -40,14 +40,14 @@ const Navbar = () => {
       <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-darker/85 backdrop-blur-md py-3 shadow-[0_4px_30px_rgba(176,38,255,0.2)]' : 'bg-transparent py-5'}`}>
         <div className='container'>
           <nav ref={navRef} className='responsive-nav'>
-            {/* Logo Section */}
+            {/* Logo */}
             <a href='#home' className='logo flex items-center group z-10'>
               <span className='text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-neon-purple group-hover:text-neon-pink transition-colors duration-300'>
                 <GlowText text='Ethan McLean' intensity='strong' />
               </span>
             </a>
 
-            {/* Navigation Items */}
+            {/* Navigation */}
             <div className='nav-links'>
               {navItems.map((item, index) => (
                 <a
@@ -63,7 +63,7 @@ const Navbar = () => {
                 </a>
               ))}
 
-              {/* Theme Toggle Button */}
+              {/* Theme Toggle */}
               <button onClick={toggleTheme} className='theme-toggle ml-2 md:ml-4 flex items-center justify-center transition-all duration-300' aria-label='Toggle theme'>
                 <div className='relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center'>
                   {darkMode ? (
@@ -83,7 +83,7 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Add custom CSS using regular style tag instead of styled-jsx */}
+      {/* CSS */}
       <style>
         {`
           .responsive-nav {

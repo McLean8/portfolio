@@ -1,7 +1,7 @@
 import React from 'react'
 import useTechAnimations from '../hooks/useTechAnimations'
 
-// Import components and data directly
+// Components and data
 import TechCategory from './technologies/TechCategory'
 import SectionHeader from './technologies/SectionHeader'
 import { technologies } from './technologies/techData'
@@ -19,7 +19,7 @@ const Technologies = () => {
           {/* Section header */}
           <SectionHeader title='Technologies' titleRef={titleRef} />
 
-          {/* Tech stack container */}
+          {/* Tech stack */}
           <div ref={containerRef} className='grid gap-8 md:gap-12 w-full'>
             {technologies.map((techGroup, groupIndex) => (
               <TechCategory key={groupIndex} category={techGroup.category} items={techGroup.items} startIndex={groupIndex * 10} />
