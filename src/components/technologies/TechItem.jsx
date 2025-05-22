@@ -18,7 +18,6 @@ const TechItem = ({ tech, index }) => {
           className='relative px-2 py-1 inline-block 
         transition-all duration-300 ease-in-out 
         hover:text-neon-purple group-hover:text-neon-purple/90 
-        hover:shadow-[0_0_0_1px_rgba(176,38,255,0.2)] 
         hover:bg-neon-purple/5
         hover:rounded-md'>
           {tech}
