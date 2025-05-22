@@ -11,7 +11,7 @@ const Contact = () => {
   const { formState, handleChange, handleSubmit, formSubmitted, formSubmitting, formError } = useContactForm()
 
   return (
-    <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-darker relative overflow-hidden w-full'>
+    <section id='contact' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-dark relative w-full'>
       <div className='container'>
         <div className='flex flex-col gap-8 md:gap-12 w-full'>
           {/* Section header with number */}
@@ -29,10 +29,13 @@ const Contact = () => {
 
           {/* Social links */}
           <SocialLinks />
+
+          {/* Scroll to top button - moved inside the flex container */}
+          <div className='relative w-full mt-8'>
+            <ScrollToTopButton />
+          </div>
         </div>
       </div>
-
-      <ScrollToTopButton />
     </section>
   )
 }

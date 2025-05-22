@@ -11,16 +11,8 @@ import AboutContent from './about/AboutContent'
 
 const About = () => {
   const sectionRef = useRef(null)
-  const { titleRef, contentRef, imgRef, arrowRef } = useElementAnimations()
+  const { titleRef, contentRef, imgRef } = useElementAnimations()
   const { paragraphRef, highlightedWords, highlightStyle } = useKeywordHighlight()
-
-  // Handle arrow click to scroll to next section
-  const scrollToNext = () => {
-    const skills = document.getElementById('skills')
-    if (skills) {
-      skills.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   return (
     <section id='about' ref={sectionRef} className='min-h-screen flex flex-col justify-center py-16 md:py-24 bg-dark relative w-full'>

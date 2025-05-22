@@ -764,15 +764,3 @@ section {
     width: 100%;
   }
 }
-
-@media (min-width: 768px) {
-  #contact .container {
-    max-width: 90%;
-  }
-}
-
-@media (min-width: 1024px) {
-  #contact .container {
-    max-width: 85%;
-  }
-}
