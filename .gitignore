@@ -25,4 +25,22 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
-netlify.toml
+.netlify.toml	
+
+# Logs
+*.log
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# Temporary files
+.tmp/
+.temp/
+
+# Coverage reports
+coverage/
+
+# OS generated files
+Thumbs.db	
