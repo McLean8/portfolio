@@ -8,7 +8,7 @@ const HeroContent = ({ titleRef, subtitleRef }) => {
       <div className='flex flex-col items-center justify-center w-full'>
         <h1 ref={titleRef} className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center leading-tight mb-6 md:mb-10 w-full'>
           <div className='inline-block'>
-            <GlowText text="Hey, I'm" intensity='medium' />
+            <GlowText text='Hey, I am' intensity='medium' />
           </div>{' '}
           <div className='group inline-block'>
             <span className='font-mono hero-name font-bold tracking-wider group-hover:text-neon-pink transition-colors duration-300'>
